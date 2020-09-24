@@ -9,4 +9,4 @@ Dataset(s) used for training:
 Best WER achieved on AN4 dataset using base config modified by:
 - lr: 0.02
 - weight decay: 0.005
-WER: 0.229 = 22.9 %
+- WER: 0.229 = 22.9 %
