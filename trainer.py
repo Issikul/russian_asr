@@ -2,34 +2,59 @@ import nemo
 import nemo.collections.asr as nemo_asr
 from nemo.collections.asr.metrics.wer import WER
 import pytorch_lightning as pl
-from nemo.core import ModelPT
 from ruamel.yaml import YAML
 from omegaconf import DictConfig
 from pathlib import Path
 
+
 WORK_DIR = Path.cwd()
 
 
-def train():
-    # Set config and manifest paths
-    config_path = str(WORK_DIR / "configs" / "config_russian.yaml")
-    train_manifest = str(WORK_DIR / "mozilla" / "ru" / "custom_train.json")
-    test_manifest = str(WORK_DIR / "mozilla" / "ru" / "test.json")
+# russian train settings
+config_path_ru = str(WORK_DIR / "configs" / "config_russian_15x5.yaml")
+train_manifest_ru = str(WORK_DIR / "mozilla" / "ru" / "train.json")
+test_manifest_ru = str(WORK_DIR / "mozilla" / "ru" / "test.json")
 
+
+# librispeech clean 100 settings
+config_path_ls = str(WORK_DIR / 'configs' / 'quartznet12x1.yaml')
+train_manifest_ls = str(WORK_DIR / 'librispeech' / 'librispeech_manifest_train.json')
+test_manifest_ls = str(WORK_DIR / 'librispeech' / 'librispeech_manifest_test.json')
+
+
+# an4 settings
+config_path_an4 = str(WORK_DIR / 'configs' / 'quartznet12x1.yaml')
+train_manifest_an4 = str(WORK_DIR / 'an4' / 'train_manifest.json')
+test_manifest_an4 = str(WORK_DIR / 'an4' / 'test_manifest.json')
+
+
+def train_model(config_path: str, train_manifest: str, test_manifest: str, checkpoint: str = None):
+    # Set config
     yaml = YAML(typ='safe')
     with open(config_path) as f:
         params = yaml.load(f)
     print(params)
 
-    trainer = pl.Trainer(gpus=1, max_epochs=200)
-
+    # Add train and test paths to config
     params['model']['train_ds']['manifest_filepath'] = train_manifest
     params['model']['validation_ds']['manifest_filepath'] = test_manifest
 
-    first_asr_model = nemo_asr.models.EncDecCTCModel(cfg=DictConfig(params['model']), trainer=trainer)
+    # Setup trainer
+    trainer = pl.Trainer(gpus=1, max_epochs=200, resume_from_checkpoint=checkpoint)
+
+    # Setup model
+    asr_model = nemo_asr.models.EncDecCTCModel(cfg=DictConfig(params['model']), trainer=trainer)
+
+    # Load checkpoint if specified
+    if checkpoint:
+        # ADD if NEEDED: hparams_file=str(WORK_DIR / "lightning_logs" / "version_34" / "hparams.yaml")
+        asr_model = asr_model.load_from_checkpoint(checkpoint_path=checkpoint)
+
+        asr_model.setup_training_data(train_data_config=params['model']['train_ds'])
+        asr_model.setup_validation_data(val_data_config=params['model']['validation_ds'])
 
     # Start training!!!
-    trainer.fit(first_asr_model)
+    trainer.fit(asr_model)
 
 
 def inference():
@@ -52,8 +77,8 @@ def inference():
 
     # Setup the test data loader and make sure the model is on GPU
     # asr_model.restore_from(restore_path=str(WORK_DIR / 'checkpoint.nemo'))
-    asr_model = asr_model.load_from_checkpoint(str(WORK_DIR / "lightning_logs" / "version_31" /
-                                                   "checkpoints" / "epoch=81.ckpt"))
+    asr_model = asr_model.load_from_checkpoint(str(WORK_DIR / "lightning_logs" / "version_51" /
+                                                   "checkpoints" / "epoch=194.ckpt"))
     asr_model.setup_test_data(test_data_config=params['model']['validation_ds'])
     asr_model.cuda()
 
@@ -81,68 +106,12 @@ def check_duration(file_path):
     print(overall)
 
 
-def train_an4(work_dir: Path):
-    # --- Config Information ---#
-    config_path = str(work_dir / 'configs' / 'config_an4.yaml')
-    train_manifest = str(work_dir / 'an4' / 'train_manifest.json')
-    test_manifest = str(work_dir / 'an4' / 'test_manifest.json')
-
-    yaml = YAML(typ='safe')
-    with open(config_path) as f:
-        params = yaml.load(f)
-    print(params)
-
-    trainer = pl.Trainer(gpus=1, max_epochs=200)
-
-    params['model']['train_ds']['manifest_filepath'] = train_manifest
-    params['model']['validation_ds']['manifest_filepath'] = test_manifest
-    an4_asr_model = nemo_asr.models.EncDecCTCModel(cfg=DictConfig(params['model']), trainer=trainer)
-
-    # Start training!!!
-    trainer.fit(an4_asr_model)
-
-
-def train_librispeech(work_dir: Path, ckpt=None):
-    # --- Config Information ---#
-    config_path = str(work_dir / 'configs' / 'config_librispeech_2.yaml')
-    train_manifest = str(work_dir / 'librispeech' / 'librispeech_manifest_train.json')
-    test_manifest = str(work_dir / 'librispeech' / 'librispeech_manifest_test.json')
-
-    yaml = YAML(typ='safe')
-    with open(config_path) as f:
-        params = yaml.load(f)
-    print(params)
-
-    # ADD RESUME FROM CHECKPOINT, NOT ONLY LOAD FROM CHECKPOINT
-    trainer = pl.Trainer(gpus=1, max_epochs=200, resume_from_checkpoint=ckpt)
-
-    params['model']['train_ds']['manifest_filepath'] = train_manifest
-    params['model']['validation_ds']['manifest_filepath'] = test_manifest
-
-    ls_asr_model = nemo_asr.models.EncDecCTCModel(cfg=DictConfig(params['model']), trainer=trainer)
-
-    # If loading from checkpoint
-    if ckpt:
-        ls_asr_model = ls_asr_model.load_from_checkpoint(checkpoint_path=ckpt, hparams_file=
-                                                         str(WORK_DIR / "lightning_logs" / "version_34" /
-                                                             "hparams.yaml"))
-
-        ls_asr_model.setup_training_data(train_data_config=params['model']['train_ds'])
-        ls_asr_model.setup_validation_data(val_data_config=params['model']['validation_ds'])
-
-
-    # Start training!!!
-    trainer.fit(ls_asr_model)
-
-
 if __name__ == '__main__':
-    # train librispeech
-    train_librispeech(WORK_DIR, str(WORK_DIR / "lightning_logs" / "version_44" / "checkpoints" / "epoch=97.ckpt"))
-    # train_librispeech(WORK_DIR)
+    # train, choose settings from predifined ones, optionally add checkpoint path
+    train_model(config_path_an4, train_manifest_an4, test_manifest_an4)
 
-    # train an4
-    # train_an4(WORK_DIR)
-
-    # train()
+    # inference model
     # inference()
+
+    # other
     # check_duration(str(WORK_DIR / "mozilla" / "ru" / "test.json"))

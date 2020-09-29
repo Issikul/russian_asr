@@ -1,4 +1,4 @@
-name: &name "QuartzNet15x5"
+name: &name "QuartzNet12x1"
 sample_rate: &sample_rate 16000
 repeat: &repeat 1
 dropout: &dropout 0.0
@@ -13,6 +13,7 @@ model:
     labels: *labels
     batch_size: 32
     trim_silence: True
+    normalize_transcripts: True
     max_duration: 16.7
     shuffle: True
     is_tarred: False
@@ -37,7 +38,7 @@ model:
       n_fft: 512
       frame_splicing: 1
       dither: 0.00001
-      stft_conv: false
+      stft_conv: True
 
   spec_augment:
     cls: nemo.collections.asr.modules.SpectrogramAugmentation
@@ -54,82 +55,139 @@ model:
       conv_mask: true
 
       jasper:
-        - filters: 128
-          repeat: 1
-          kernel: [11]
-          stride: [1]
-          dilation: [1]
-          dropout: *dropout
-          residual: true
-          separable: *separable
-          se: true
-          se_context_size: -1
+      - filters: 256
+        repeat: 1
+        kernel: [33]
+        stride: [2]
+        dilation: [1]
+        dropout: 0.0
+        residual: false
+        separable: true
 
-        - filters: 256
-          repeat: *repeat
-          kernel: [13]
-          stride: [1]
-          dilation: [1]
-          dropout: *dropout
-          residual: true
-          separable: *separable
-          se: true
-          se_context_size: -1
+      - filters: 256
+        repeat: 1
+        kernel: [33]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
 
-        - filters: 256
-          repeat: *repeat
-          kernel: [15]
-          stride: [1]
-          dilation: [1]
-          dropout: *dropout
-          residual: true
-          separable: *separable
-          se: true
-          se_context_size: -1
+      - filters: 256
+        repeat: 1
+        kernel: [33]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
 
-        - filters: 256
-          repeat: *repeat
-          kernel: [17]
-          stride: [1]
-          dilation: [1]
-          dropout: *dropout
-          residual: true
-          separable: *separable
-          se: true
-          se_context_size: -1
+      - filters: 256
+        repeat: 1
+        kernel: [33]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
 
-        - filters: 256
-          repeat: *repeat
-          kernel: [19]
-          stride: [1]
-          dilation: [1]
-          dropout: *dropout
-          residual: true
-          separable: *separable
-          se: true
-          se_context_size: -1
+      - filters: 256
+        repeat: 1
+        kernel: [39]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
 
-        - filters: 256
-          repeat: 1
-          kernel: [21]
-          stride: [1]
-          dilation: [1]
-          dropout: 0.0
-          residual: false
-          separable: *separable
-          se: true
-          se_context_size: -1
+      - filters: 256
+        repeat: 1
+        kernel: [39]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
 
-        - filters: &enc_feat_out 1024
-          repeat: 1
-          kernel: [1]
-          stride: [1]
-          dilation: [1]
-          dropout: 0.0
-          residual: false
-          separable: *separable
-          se: true
-          se_context_size: -1
+      - filters: 256
+        repeat: 1
+        kernel: [39]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 512
+        repeat: 1
+        kernel: [51]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 512
+        repeat: 1
+        kernel: [51]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 512
+        repeat: 1
+        kernel: [51]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 512
+        repeat: 1
+        kernel: [63]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 512
+        repeat: 1
+        kernel: [63]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 512
+        repeat: 1
+        kernel: [63]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 512
+        repeat: 1
+        kernel: [75]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: true
+        separable: true
+
+      - filters: 1024
+        repeat: 1
+        kernel: [1]
+        stride: [1]
+        dilation: [1]
+        dropout: 0.0
+        residual: false
 
   decoder:
     cls: nemo.collections.asr.modules.ConvASRDecoder
