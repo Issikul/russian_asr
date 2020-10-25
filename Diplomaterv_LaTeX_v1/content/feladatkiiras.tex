@@ -2,3 +2,36 @@
 \chapter{Feladatkiírás pontosítása és elemzése}
 %----------------------------------------------------------------------------
 
+\section{Beszédfelimserés bemutatása}
+
+Az irodalomkutatás beszédfelismerés témájában különböző források, cikkek, internetes bologok és papírok alapján történik. A különböző források a beszédfelimserés egyes részeit mutatják be, ezeket megismerve és elemezve elvégezhető ezek összefoglalása és ismertetése. A neurális hálók prezentálása elengedhetelen, lényegretörő bemutatásuk és szerepük nyomán a beszédfelimserésben. Fontos kitérni az end-to-end alap mivoltára, ennek előnyeinek és hátrányainak bemutatása egy eddig bevált, hagyományos módszerekkel szemben.
+
+Mivel egy egészen új és feltörekvő megközelítésről van szó, célszerű a forrásokat megvizsgálni, összevetni az azonos témáról írtakat az alátámasztás és a könnyebb értelemzhetőség végett. Érdemes az elméleten túl a potenciálisan felhasználható megoldásokat részletesen megismerni, melyek implementálhatók a későbbi tervezés során a jobb eredmények végett.
+
+\section{Korszerű architektúrák és tervezés}
+
+Különböző neuronhálós architketúrák léteznek különböző feladatokra, így a beszédfelismerésre is. Felderítésük, előnyeik és hátrányaik megismerése és összevetésük a feladat. 
+
+A neurális hálók természetüknél fogva igen összetettek, így egyes rendszerek könnyen igen erőforrásigfényesek lehetnek, melyeket a diplomamunka keretein belül akár kivitelezhetetlen is lenne használni. Ezért célszerű, hogy olyan architektúrát válasszunk, ami minél jobb, látványos és felhasználható eredmények elérésére képes a lehető legrövidebb idő alatt. Az idő rövidsége a tesztelési fázist is nagyban felgyorsíthatja, így szerepe kulcsfontosságú, míg természetesen fontos és nem elhanyagolható a pontosság is.
+
+Kezdetben angol nyelven célszerű tesztelni az megtervezett architektúrát és az egyes paramétereinek pontosítását, mivel angol nyelven rengeteg eredmény elérhető, ezáltal összevethető.
+
+\section{Orosz nyelvű implementáció}
+
+Egy másik nyelvre áttérve el kell végezni annak a vizsgálatát, hogy adott nyelven milyen különbségek vannak. Ez többnyire az ABC-t jelenti, de előfordulhatnák más implementációbeli különbségek is. Ha egy keretrendszer angol nyelvre van optimalizálva, előfordulhat, hogy ezeket a finomításokat el kell vetni és egy általános megközelítést kell használni.
+
+A célnyelvi adatokat különböző forrásokból is be lehet gyűjetni. Mivel az adatbázisok csak nyíltak lehetnek, ezért ezek megbízhatóságát meg kell vizsgálni akár szúrópróbaszerűen akár más felhasználók véleménye alapján. Az adatok mérete mind a neurális modellek tanítási ideje mind tárhelykapacitás miatt nem szabad, hogy túl sok legyen.
+
+A transfer-learning egy olyan elterjedt tanítási módszer neurális hálók használata során, ami szintén megvizsgálandó a jobb eredmény elérése érdekében. Ez az orosz nyelv esetén nehezebben oldható meg, mivel már működő, adott felépítésű modelleket lehet továbbtanítani és orosz nyelvű modellek közel sem olyan elterjedtek mint például az angol nyelvűek. Szerencsére van lehetőség tetszőleges részeket átvenni, így megoldható, hogy a nyelvspecifikus elemeken kívülieket importáljuk csak.
+
+\section{Optimaliziálás és kiértékelés}
+
+Az elkészült architektúrát ki kell értékelni, összehasonlítani más eredményekkel és vélemenyezni az így elért eredményt.
+
+Lehetőség van az eredmény javítására különböző módszerekkel, melyek már ismertek a neurális hálók körében, vagy kizárólag beszédfelismerésnél jelennek meg. Az előbbi csoportba tartozik például az augmentálás, mely folyamat során a meglévő tanítóhalmazt dúsítják különböző módszerekkel. Utóbbi csoportba tartoznak a különböző dekóderek, annak a módja hogy hogyan értelmezzük a valószínűségként kapott kimeneteket az egyes időpillanatokban, illetve a nyelv modellek.
+
+\section{Munka összegzése és kitekintés}
+
+Befejezeséképp kerül sor a kitűzött fealdatok sikerességének bemutatására, az elért eredmények részletezéséve és az esetleges kudarcok a zsákutcák leírására.
+
+További, ki nem próbált lehetőséget és fejlesztési ötletek javaslása. Indoklás, hogy ezek miért nem kerültek kipróbálásra.
