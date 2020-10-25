@@ -7,8 +7,7 @@ __pycache__/
 *.so
 
 # Soundfile clips
-cv-corpus-5.1-2020-06-22/clips_wav/
-cv-corpus-5.1-2020-06-22/clips/
+datasets/
 *.wav
 *.mp3
 *.flac
@@ -25,6 +24,7 @@ cv-corpus-5.1-2020-06-22/clips/
 *.tsv
 *.txt
 *.sph
+*.nemo
 
 # Pycharm
 .idea/

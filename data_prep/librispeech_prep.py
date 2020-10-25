@@ -63,5 +63,5 @@ if __name__ == '__main__':
     # untar_librispeech(str(WORK_DIR), str(WORK_DIR / 'train-clean-100.tar.gz'))
     # flac_to_wav_recursively(str(WORK_DIR / 'librispeech' / 'train-clean-100'))
     # flac_to_wav_recursively(str(WORK_DIR / 'librispeech' / 'test-clean'))
-    mainfest_from_librispeech(str(WORK_DIR / 'librispeech' / 'train-clean-100'), 'train')
-    mainfest_from_librispeech(str(WORK_DIR / 'librispeech' / 'test-clean'), 'test')
+    mainfest_from_librispeech(str(WORK_DIR / 'datasets' / 'librispeech' / 'train-clean-100'), 'train')
+    mainfest_from_librispeech(str(WORK_DIR / 'datasets' / 'librispeech' / 'test-clean'), 'test')

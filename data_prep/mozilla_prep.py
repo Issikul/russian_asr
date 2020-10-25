@@ -170,7 +170,7 @@ def create_custom_json_manifest(data_path: Path, exclude_paths: list, transcript
 
 
 if __name__ == '__main__':
-    data_dir = WORK_DIR / 'mozilla' / 'ru'
+    data_dir = WORK_DIR / 'datasets' / 'mozilla' / 'ru'
 
     # 1, wav rewrite
     # convert_mp3_to_wav(data_dir / 'clips', data_dir / 'clips_wav')
@@ -181,13 +181,13 @@ if __name__ == '__main__':
     #    change_tsv_path_name(str(data_dir / file_name))
 
     # 3, create .json file(s) for NeMo toolkit
-    wav_data = ['dev_wav.tsv', 'invalidated_wav.tsv', 'validated_wav.tsv',
-                'train_wav.tsv', 'test_wav.tsv']
-    manifest_data = ['dev.json', 'invalidated.json', 'validated.json',
-                     'train.json', 'test.json']
-    for i in range(len(wav_data)):
-        create_json_manifest(data_dir, str(data_dir / wav_data[i]), str(data_dir / manifest_data[i]))
+    # wav_data = ['dev_wav.tsv', 'invalidated_wav.tsv', 'validated_wav.tsv',
+    #            'train_wav.tsv', 'test_wav.tsv']
+    # manifest_data = ['dev.json', 'invalidated.json', 'validated.json',
+    #                 'train.json', 'test.json']
+    # for i in range(len(wav_data)):
+    #    create_json_manifest(data_dir, str(data_dir / wav_data[i]), str(data_dir / manifest_data[i]))
 
     # 4
-    # create_custom_json_manifest(data_dir, [str(data_dir / 'dev_wav.tsv'), str(data_dir / 'test_wav.tsv')],
-    #                            str(data_dir / 'validated_wav.tsv'), str(data_dir / 'custom_train.json'))
+    create_custom_json_manifest(data_dir, [str(data_dir / 'dev_wav.tsv'), str(data_dir / 'test_wav.tsv')],
+                                str(data_dir / 'validated_wav.tsv'), str(data_dir / 'custom_train.json'))

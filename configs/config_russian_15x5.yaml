@@ -232,7 +232,7 @@ model:
     # cls: nemo.core.optim.optimizers.Novograd
     lr: .02
     # optimizer arguments
-    betas: [0.8, 0.5]
+    betas: [0.95, 0.5]
     weight_decay: 0.001
 
     # scheduler setup

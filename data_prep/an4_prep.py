@@ -84,5 +84,5 @@ def create_manifest_an4(data_dir: str):
 
 
 if __name__ == '__main__':
-    prepare_an4(str(WORK_DIR))
-    create_manifest_an4(str(WORK_DIR))
+    prepare_an4(str(WORK_DIR / 'datasets'))
+    create_manifest_an4(str(WORK_DIR / 'datasets'))
