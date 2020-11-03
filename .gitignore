@@ -6,6 +6,29 @@ __pycache__/
 # C extensions
 *.so
 
+# Soundfile clips
+datasets/
+*.wav
+*.mp3
+*.flac
+
+# tars, zips
+*.tar
+*.gz
+*.zip
+
+# checkpoint files
+*.ckpt
+
+# other
+*.tsv
+*.txt
+*.sph
+*.nemo
+
+# Pycharm
+.idea/
+
 # Distribution / packaging
 .Python
 build/
