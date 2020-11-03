@@ -2,13 +2,9 @@
 \chapter{\bevezetes}
 %----------------------------------------------------------------------------
 
-A bevezető tartalmazza a diplomaterv-kiírás elemzését, történelmi előzményeit, a feladat indokoltságát (a motiváció leírását), az eddigi megoldásokat, és ennek tükrében a hallgató megoldásának összefoglalását.
-
-A bevezető szokás szerint a diplomaterv felépítésével záródik, azaz annak rövid leírásával, hogy melyik fejezet mivel foglalkozik.
-
 \section{Gépi beszédfelismerés}
 
-Az automatikus gépi beszédfelismerés régóta foglalkoztatja az emberek fantáziáját. Személyi asszisztens formájában már találkozhatott vele bármilyen sci-fi- és film kedvelő. De ott lapul a zsebünkben is a technológia, az okostelefonjaink, melyek a legtöbb ember számára a mindennapok részét képzik, rendelkeznek beszédfelismerő funkcióval. Legyen az egy személyi asszisztens, amivel például könnyedén beállíthatóak emlékeztetők, vagy egy egyszerű Google Search-ön alapuló keresés, melyet begépelés hang segítségével is el lehet végezni. Nappalinkban is egyre inkább hódít, jó példa rá az Amazon Alexa-ja, aminek a segítségével több okos eszköz is kezelhető a lakóterünkben.
+Az automatikus gépi beszédfelismerés régóta foglalkoztatja az emberek fantáziáját. Személyi asszisztens formájában már évtizedekkel ezelőtt találkozhatott vele bármilyen sci-fi kedvelő. De napjainkban már ott lapul a zsebünkben is a technológia, az okostelefonjaink, melyek a legtöbb ember számára a mindennapok részét képzik, rendelkeznek beszédfelismerő funkcióval. Legyen az egy személyi asszisztens, amely segítségével például könnyedén beállíthatóak emlékeztetők, vagy egy egyszerű Google Search-ön alapuló keresés, melyhez a begépelést hang segítségével is el lehet végezni. Nappalinkban is egyre inkább hódít, jó példa rá az Amazon Alexa-ja, aminek a segítségével több okos eszköz is kezelhető a lakóterünkben.
 
 Ezek a technológiák mind automatikus beszédfelismerésen alapszanak, amelyet alkalmazva az ember kizárólag hang interfész segítségével tud kommunikálni a géppel, mintha csak egy másik emberrel csevegne. Ez a megközelítés nagy szabadságot nyújt a kommunikáló számára, nem köti többé billentyűzet, egér, érintőképernyő de még monitor, kijelző sem. Egyre inkább pontosodó, esetenként még az emberi prezicitáson is túlmutató, felismerés nyújtotta lehetőségek felhasználási területe egyre bővül, egyre inkább bekerül a köztudatba és mindennapjainkba.
 
@@ -47,7 +43,7 @@ A modellekben elterjedt a konvolúciós- (CNN) és rekurrens neurális rétegek 
 \begin{table}[ht]
 	\footnotesize
 	\centering
-	\begin{tabular}{ p{2cm} p{2cm} p{2.5cm} p{1.5cm} p{1.5cm} p{2cm} }
+	\begin{tabular}{ p{2cm} p{2.5cm} p{2.5cm} p{1.5cm} p{1.5cm} p{1.5cm} }
 		\toprule
 		\textbf{Model} & \textbf{Aug} & \textbf{LM} & \textbf{clean WER(\%)} & \textbf{other WER(\%)} & \textbf{Million Parameters} \\
 		\midrule
@@ -77,8 +73,6 @@ Megoldásomban az Nvidia QuartzNet alapján indultam el, annak alacsony paramét
 Főként az ingyenesen hozzáférhető Mozilla Common Voice adatbázist haszálva tanítottam orosz nyelvre a legsikeresebbnek ítélt, 15x5 architektúrájú modellt. A modellt nem véletlenszerűen beállított súlyokkal, hanem transfer learning-et alkalmazva, egy előre tanított angol modellbeli súlyokkal inicilaizáltam.
 
 Az eredmény finomítása végett próbálkoztam több tanítóadat beiktatásával, mellyel a validációs adathalmaz WER értéke csökkent, így javult. Sajnos a több tanítóadat lényeges megnövelte a tanítás idejét így erőforrások szűkében csökkentette a kísérletezésre jutó időt, ezért ezt a módszert csak kis mértékben alkalmaztam.
-
-(Augmentáció, Language Model...?)
 
 \section{Diplomaterv felépítése}
 
