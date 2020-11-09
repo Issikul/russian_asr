@@ -23,7 +23,7 @@ A két fő megközelítés többnyire hasonló, apró eltérésekkel. Az egyik l
 
 Ahogy az 1. ábrán is látható, a spektogramm három tengely mentén reprezentálja az adatot. Az x tengelyen az idő, míg az y tengelyen a frekvencia van megadva. Van továbbá egy harmadik tengely is, ami színnel van jelölve és mértékegysége a decibel. Ez a jel amplitúdója vagy energiája. Világosabb szín erősebb, hangosabb hangot, illetve sötétebb szín gyengébb, alacsonyabb hangot jelképez.
 
-A szokványos spektrogrammon kívül használatos még a MFCCs (Mel-Frequency Cepstral Coefficients) is. Felépítése hasonló a spektogramméval, viszont a frekencia helyett MFC koefficens értéke van az y tengelyen. Ez a Mel skála, amely úgy van megválasztva, hogy a skálán egyelő távolságra lévő hangok az emberi fül számára is hasonló távolságúnak tűnjenek. A frekvenciához képest egy lényeges változást jelent, hiszen az ember számára könnyen hallható kisebb frekvenciákon, például az 500 Hz és 1000 Hz közötti különbség, míg 6500 Hz és 7000 Hz között már nem olyan számottevő az eltérés. Ez utóbbi érték nagyságrendekkel kisebb a frekvencia értéknél így lényegesen befolyásolhatja a neurális háló tanulási folyamatát.
+A szokványos spektrogrammon kívül használatos még a MFCCs (Mel-Frequency Cepstral Coefficients) is. Felépítése hasonló a spektogramméval, viszont a frekencia helyett MFC koefficens értéke van az y tengelyen. Ez a Mel skála, amely úgy van megválasztva, hogy a skálán egyelő távolságra lévő hangok az emberi fül számára is hasonló távolságúnak tűnjenek. A frekvenciához képest egy lényeges változást jelent, hiszen az ember számára könnyen hallható kisebb frekvenciákon, például az 500 Hz és 1000 Hz közötti különbség, míg 6500 Hz és 7000 Hz között már kevésbé számottevő az eltérés. Ez utóbbi érték nagyságrendekkel kisebb a frekvencia értéknél így lényegesen befolyásolhatja a neurális háló tanulási folyamatát.
 % https://en.wikipedia.org/wiki/Mel-frequency_cepstrum
 
 Az előfeldolgozott jelet időegységekre bontjuk, melyek már a neurális háló bemenetét képzik. A kimeneten az egyes időegységekre kapott predikciókból pedig összeállítható a feltételezett szöveg.
@@ -39,11 +39,28 @@ Az előfeldolgozott jelet időegységekre bontjuk, melyek már a neurális hál�
 
 \subsection{Neurális hálók}
 
-A neurális hálók az emberi idegek működésének mintája alapján modellezett láncolatok. Röviden összefoglalva három különböző részt kell elképzelni. Egyik a bemenet, például egy kép esetén a pixelek, beszédfelismerés esetén az egyes időpillanatokhoz tartozó értékek vektor alakban. Spektogram esetén vektor egyes elemei a frekvenciát jelképezik és az elemek értéke pedig a hangerősséget. A neurális háló közbülső, rejtettnek, nevezett része tetszőleges méretet ölthet, mindig az előző réteg pontjaival vannak összekötve a következő réteg egyes pontjai úgy nevezett súlyok segítségével. Az újabb rétegek pontjai, amiket neuronoknak is szokás hívni, értékét az abba befutó súlyok, illetve a súlyok kiinduló pontja értékével számítódik. A háló tanítása során ezen súlyok értékét módosítjuk úgy, hogy a legoptimálisabb eredményt kapjuk. Az utolsó réteg a kimeneti réteg, ahol az eredményt kapjuk meg. A kimeneti réteg lehet regresszív, egy előre meg nem határozott, tetszőleges érték, vagy a mi esetünkben klasszifikáció, amikor előre meghatározott címkék (label-ek) valószínűségére vagyunk kíváncsiak. A legvalószínűbb címke kerül kiválasztásra válaszként.
+A neurális hálók az emberi idegek működésének mintája alapján modellezett láncolatok. Számos különböző, komplex feladat megoldására előszeretettel alkalmazzák őket. Röviden összefoglalva három fő alkotó részt kell elképzelni. Egyik a bemenet, például egy kép esetén a pixelek, beszédfelismerés esetén az egyes időpillanatokhoz tartozó értékek vektor formában. Spektogram esetén az időpillanathoz tartozó vektor egyes elemei a frekvenciát jelképezik és az elemek értéke pedig a hangerősséget.
 
-Neurális hálót felügyelten tanítani azt jelenti, hogy először a tanítatlan hálóból kiindulva kiértékeljük egy tetszőleges bemenetre a végeredményt. Majd a végeredmény helyességétől függően változtatjuk a súlyok értékét a hálóban: azon súlyokat melyek egy rossz eredmény nagyobb valószínűségéhez járultak hozzá büntetjük, míg azokat melyek egy jó eredmény pozitív értékéhez járultnak hozzá növeljük. A büntetés mértéke is létfontosságú, hiszen fontos, hogy ne csak az adott bemenetre tudjon pontos végeredményt adni a háló, hanem általánosan is pontos legyen. 
+A neurális háló közbülső, rejtettnek, nevezett része tetszőleges méreteket ölthet. Az egyes rétegek pontjai mindig az előző réteg pontjaival vannak összekötve úgy nevezett súlyok segítségével. Az újabb rétegek pontjainak értékét az abba befutó súlyok, illetve a súlyok és kiinduló pontjuk szorzatainak az összegével számítjuk. A pontok végső értéke még egy aktivációs függvénynek nevezett kiértékelésen is ekresztül megy mielőtt a következő réteg értékeit kiszámítatnánk vele. Az aktivációs függvények igen eltérőek lehetnek, egy népszerű függvény a ReLU. Ezeket a pontokat neuronoknak szokás nevezni, innen ered a neurálsi háló kifejezés. A háló tanítása során ezen súlyok értékét módosítjuk úgy, hogy a legoptimálisabb, számunkra kedvezőnek vélt eredményt kapjuk.
 
-Az E2E-hez használt leggyakoribb neurális háló réteg fajták az rekurrens (RNN) és konvolúciós (CNN) rétegek. Ez utóbbi egyik leggyakoribb felhasználási területe a különböző képfelismerő feladatok.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/ReLU.png}
+\caption{A ReLU aktivációs függvény.}
+\label{fig:TeXstudio}
+\end{figure}
+
+Az utolsó réteg a kimeneti réteg, ahol az eredményt kapjuk meg. A kimeneti réteg lehet regresszív, egy előre meg nem határozott, tetszőleges érték, vagy a mi esetünkben klasszifikáció, amikor előre meghatározott címkék (label-ek) valószínűségére vagyunk kíváncsiak. Legyegyszerűbb estben a legvalószínűbb címke kerül kiválasztásra válaszként.
+
+A valószínség kiszámításához a softmax függvényt szokás használni, ami szintén egy aktivációs függvény. A függvény egy vektor bemenetet megkapva normalizálja a vektor egyes értékeit úgy, hogy azok új értékei 0 és 1 közé essenek, miközben az összegük pontosan 1-et adjon. A softmax függvény, ahol x a bemeneti vektort jelöli, míg i és j a vektor egyes elemeinek a sorszámát:
+
+\begin{align}
+softmax(x)_i = \frac{exp(x_i)}{\sum_{j}^{ }exp(x_j))}.
+\end{align}
+
+% https://en.wikipedia.org/wiki/Softmax_function
+
+Neurális hálót legyakrabban felügyelten tanítanak, ami azt jelenti, hogy először például egy tanítatlan, véletlenszerűen inicializált, hálóból kiindulva kiértékeljük egy tetszőleges bemenetre a végeredményt. Majd a végeredmény helyességétől függően változtatjuk a súlyok értékét a hálóban: azon súlyokat melyek egy rossz eredmény nagyobb valószínűségéhez járultak hozzá büntetjük, csökkentjük az értéküket, míg azokat melyek egy jó eredmény pozitív értékéhez járultnak hozzá növeljük. Ezt a folyamatot szokás backpropagation-nak nevezni. A büntetés mértéke is létfontosságú, hiszen fontos, hogy ne csak az adott bemenetre tudjon pontos végeredményt adni a háló, hanem általánosan is pontos legyen. 
 
 Az egyik legegyszerűbb réteg típus a Dense (sűrű) vagy más néven Fully Connected, ahogy a neve is mutatja a súlyokkal sűrűn vannak összekötve az egyes neuronok. Csak Dense rétegekből álló neurális háló esetén minden neuronba az előző réteg összes neuronja össze van kötve súlyokkal a következő réteg összes neuronjával.
 
@@ -54,6 +71,8 @@ A konvolúciós hálok gyakran csökkentik a kapott bemenet méretét. A kimenet
 \begin{align}
 \mathbf{O}&=\frac{\mathbf{W}-\mathbf{K}+\mathbf{2P}}{\mathbf{S}+\mathbf(1)}.
 \end{align}
+
+Az E2E-hez használt leggyakoribb neurális háló réteg fajták az rekurrens (RNN) és konvolúciós (CNN) rétegek. Ez utóbbit elterjedten használáják a különböző képfelismerő feladatok terültén is.
 
 A rekurrens rétegek [6] egyik legérdekesebb tulajdonsága, hogy nem csupán a súlyaikat használják a neuronok kiértékeléséhez, így felhasználva a korábban tanultakat, hanem emlékeznek a korábbi bemenetekre, így azok befolyásolhatják az újabb bemenetre adott értékelést. Beszédfelismerés esetén ezt úgy is el lehet képzelni, hogy ha például elhangzik egy magánhangzó, akkor utána nagy valószínűséggel egy mássalhangzót várunk, ennek fényében, sikeres tanítás esetén, a mássalhangzókat részesíti előnyben egy azt megelőző magánhangzó után. Korábbi állapotok tehát hozzájárulnak egy újabb állapot kiértékeléséhez a rekurrens rétegben, ahogy ez a 2. ábrán is látható.
  

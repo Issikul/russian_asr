@@ -18,29 +18,29 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.2}A beszédfelimserés lépései}{10}{section.3.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Előfeldolgozás}{10}{subsection.3.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Neurális hálók}{11}{subsection.3.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.3}CTC loss számítás}{14}{subsection.3.2.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}Tervezés}{15}{chapter.4}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Összefoglalás}{16}{chapter.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {6}\LaTeX -eszközök}{17}{chapter.6}%
-\select@language {magyar} \contentsline {section}{\numberline {6.1}A szerkesztéshez használatos eszközök}{17}{section.6.1}%
-\select@language {magyar} \contentsline {section}{\numberline {6.2}A dokumentum lefordítása Windows alatt}{17}{section.6.2}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Eszközök Linuxhoz}{19}{section.6.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {7}A dolgozat formai kivitele}{21}{chapter.7}%
-\select@language {magyar} \contentsline {section}{\numberline {7.1}A dolgozat kimérete}{21}{section.7.1}%
-\select@language {magyar} \contentsline {section}{\numberline {7.2}A dolgozat nyelve}{21}{section.7.2}%
-\select@language {magyar} \contentsline {section}{\numberline {7.3}A dokumentum nyomdatechnikai kivitele}{22}{section.7.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {8}A \LaTeX -sablon használata}{23}{chapter.8}%
-\select@language {magyar} \contentsline {section}{\numberline {8.1}Címkék és hivatkozások}{23}{section.8.1}%
-\select@language {magyar} \contentsline {section}{\numberline {8.2}Ábrák és táblázatok}{24}{section.8.2}%
-\select@language {magyar} \contentsline {section}{\numberline {8.3}Felsorolások és listák}{26}{section.8.3}%
-\select@language {magyar} \contentsline {section}{\numberline {8.4}Képletek}{27}{section.8.4}%
-\select@language {magyar} \contentsline {section}{\numberline {8.5}Irodalmi hivatkozások}{29}{section.8.5}%
-\select@language {magyar} \contentsline {section}{\numberline {8.6}A dolgozat szerkezete és a forrásfájlok}{33}{section.8.6}%
-\select@language {magyar} \contentsline {section}{\numberline {8.7}Alapadatok megadása}{35}{section.8.7}%
-\select@language {magyar} \contentsline {section}{\numberline {8.8}Új fejezet írása}{35}{section.8.8}%
-\select@language {magyar} \contentsline {section}{\numberline {8.9}Definíciók, tételek, példák}{35}{section.8.9}%
-\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{36}{chapter*.12}%
-\select@language {magyar} \contentsline {chapter}{Függelék}{37}{appendix*.13}%
-\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio felülete}{37}{section.F.1}%
-\select@language {magyar} \contentsline {section}{\numberline {F.2}Válasz az ,,Élet, a világmindenség, meg minden'' kérdésére}{38}{section.F.2}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{37}{chapter*.12}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.3}CTC loss számítás}{15}{subsection.3.2.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Tervezés}{16}{chapter.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Összefoglalás}{17}{chapter.5}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}\LaTeX -eszközök}{18}{chapter.6}%
+\select@language {magyar} \contentsline {section}{\numberline {6.1}A szerkesztéshez használatos eszközök}{18}{section.6.1}%
+\select@language {magyar} \contentsline {section}{\numberline {6.2}A dokumentum lefordítása Windows alatt}{18}{section.6.2}%
+\select@language {magyar} \contentsline {section}{\numberline {6.3}Eszközök Linuxhoz}{20}{section.6.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {7}A dolgozat formai kivitele}{22}{chapter.7}%
+\select@language {magyar} \contentsline {section}{\numberline {7.1}A dolgozat kimérete}{22}{section.7.1}%
+\select@language {magyar} \contentsline {section}{\numberline {7.2}A dolgozat nyelve}{22}{section.7.2}%
+\select@language {magyar} \contentsline {section}{\numberline {7.3}A dokumentum nyomdatechnikai kivitele}{23}{section.7.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {8}A \LaTeX -sablon használata}{24}{chapter.8}%
+\select@language {magyar} \contentsline {section}{\numberline {8.1}Címkék és hivatkozások}{24}{section.8.1}%
+\select@language {magyar} \contentsline {section}{\numberline {8.2}Ábrák és táblázatok}{25}{section.8.2}%
+\select@language {magyar} \contentsline {section}{\numberline {8.3}Felsorolások és listák}{27}{section.8.3}%
+\select@language {magyar} \contentsline {section}{\numberline {8.4}Képletek}{28}{section.8.4}%
+\select@language {magyar} \contentsline {section}{\numberline {8.5}Irodalmi hivatkozások}{30}{section.8.5}%
+\select@language {magyar} \contentsline {section}{\numberline {8.6}A dolgozat szerkezete és a forrásfájlok}{34}{section.8.6}%
+\select@language {magyar} \contentsline {section}{\numberline {8.7}Alapadatok megadása}{36}{section.8.7}%
+\select@language {magyar} \contentsline {section}{\numberline {8.8}Új fejezet írása}{36}{section.8.8}%
+\select@language {magyar} \contentsline {section}{\numberline {8.9}Definíciók, tételek, példák}{36}{section.8.9}%
+\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{37}{chapter*.13}%
+\select@language {magyar} \contentsline {chapter}{Függelék}{38}{appendix*.14}%
+\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio felülete}{38}{section.F.1}%
+\select@language {magyar} \contentsline {section}{\numberline {F.2}Válasz az ,,Élet, a világmindenség, meg minden'' kérdésére}{39}{section.F.2}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{38}{chapter*.13}%
