@@ -2,13 +2,9 @@
 \chapter{\bevezetes}
 %----------------------------------------------------------------------------
 
-A bevezető tartalmazza a diplomaterv-kiírás elemzését, történelmi előzményeit, a feladat indokoltságát (a motiváció leírását), az eddigi megoldásokat, és ennek tükrében a hallgató megoldásának összefoglalását.
-
-A bevezető szokás szerint a diplomaterv felépítésével záródik, azaz annak rövid leírásával, hogy melyik fejezet mivel foglalkozik.
-
 \section{Gépi beszédfelismerés}
 
-Az automatikus gépi beszédfelismerés régóta foglalkoztatja az emberek fantáziáját. Személyi asszisztens formájában már találkozhatott vele bármilyen sci-fi- és film kedvelő. De ott lapul a zsebünkben is a technológia, az okostelefonjaink, melyek a legtöbb ember számára a mindennapok részét képzik, rendelkeznek beszédfelismerő funkcióval. Legyen az egy személyi asszisztens, amivel például könnyedén beállíthatóak emlékeztetők, vagy egy egyszerű Google Search-ön alapuló keresés, melyet begépelés hang segítségével is el lehet végezni. Nappalinkban is egyre inkább hódít, jó példa rá az Amazon Alexa-ja, aminek a segítségével több okos eszköz is kezelhető a lakóterünkben.
+Az automatikus gépi beszédfelismerés régóta foglalkoztatja az emberek fantáziáját. Személyi asszisztens formájában már évtizedekkel ezelőtt találkozhatott vele bármilyen sci-fi kedvelő. De napjainkban már ott lapul a zsebünkben is a technológia, az okostelefonjaink, melyek a legtöbb ember számára a mindennapok részét képzik, rendelkeznek beszédfelismerő funkcióval. Legyen az egy személyi asszisztens, amely segítségével például könnyedén beállíthatóak emlékeztetők, vagy egy egyszerű Google Search-ön alapuló keresés, melyhez a begépelést hang segítségével is el lehet végezni. Nappalinkban is egyre inkább hódít, jó példa rá az Amazon Alexa-ja, aminek a segítségével több okos eszköz is kezelhető a lakóterünkben.
 
 Ezek a technológiák mind automatikus beszédfelismerésen alapszanak, amelyet alkalmazva az ember kizárólag hang interfész segítségével tud kommunikálni a géppel, mintha csak egy másik emberrel csevegne. Ez a megközelítés nagy szabadságot nyújt a kommunikáló számára, nem köti többé billentyűzet, egér, érintőképernyő de még monitor, kijelző sem. Egyre inkább pontosodó, esetenként még az emberi prezicitáson is túlmutató, felismerés nyújtotta lehetőségek felhasználási területe egyre bővül, egyre inkább bekerül a köztudatba és mindennapjainkba.
 
@@ -22,11 +18,19 @@ A neurális hálók térhóditásával 2010-es években megjelent egy alternatí
 
 \section{Az orosz nyelv}
 
-Világszerte egyik legelterjedtebb nyelv az angol, mely nem csak a közösségi, társadalmi és politikai, hanem a tudományos életet is uralja. Nem meglepő, hogy ezt a nyelvet tekintjük alapnak a besédfelismerő rendszerek pontosággának mérésekor is, ezen a nyelven vannak a legkiterjettebb szabadon elérhető beszéd adatbázis is.
+Ahogy az a 1.1-es ábrán látható világszerte az egyik legelterjedtebb nyelv az angol, mely nem csak a közösségi, társadalmi és politikai, hanem a tudományos életet is uralja. Nem meglepő, hogy ezt a nyelvet tekintjük a beszédfelismerő rendszerek pontosággának mérésekor alapnak, ezen a nyelven vannak a legkiterjettebb szabadon elérhető beszéd adatbázisok is.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=100mm, keepaspectratio]{figures/countries_languages.png}
+\caption{Országok száma, melyekben az adott nyelvet beszélik.}
+\end{figure}
+
+% https://www.visualcapitalist.com/wp-content/uploads/2018/05/world-of-languages.html
 
 Számos nyelvet beszélnek világszerte az angol mellett, sokak számára viszont az angol nem az anyanyelvük, estleg egyáltalán nem beszélik azt. Beszédfelismerés során tehát szükséges egyéb hivatalos nyelveket is vizsgálni és kutatni.
 
-Oroszország politikai és kulturális befolyása a világ ügyeibe vitathatatlan, így az orosz nyelv is fontos szerepet tölt be a nemzetközi porondon. Az end-to-end technológia és a neurális hálók által nyújtott lehetőségek megkönnyítik a nyelvek közti átállást, így egy angoltól eltérő nyelv vizsgálata és kutatása gördülékenyen megvalósítható egy angol nyelvű példa alapján.
+Oroszország politikai és kulturális befolyása a világ ügyeibe vitathatatlan, így az orosz nyelv is fontos szerepet tölt be a nemzetközi porondon. Az 1.1-es ábrán látható, hogy elterejedt nyelvnek számít több országban is. Az end-to-end technológia és a neurális hálók által nyújtott lehetőségek megkönnyítik a nyelvek közti átállást, így egy angoltól eltérő nyelv vizsgálata és kutatása gördülékenyen megvalósítható egy angol nyelvű példa alapján.
 
 \section{Megoldások}
 
@@ -39,7 +43,7 @@ A modellekben elterjedt a konvolúciós- (CNN) és rekurrens neurális rétegek 
 \begin{table}[ht]
 	\footnotesize
 	\centering
-	\begin{tabular}{ p{2cm} p{2cm} p{2.5cm} p{1.5cm} p{1.5cm} p{2cm} }
+	\begin{tabular}{ p{2cm} p{2.5cm} p{2.5cm} p{1.5cm} p{1.5cm} p{1.5cm} }
 		\toprule
 		\textbf{Model} & \textbf{Aug} & \textbf{LM} & \textbf{clean WER(\%)} & \textbf{other WER(\%)} & \textbf{Million Parameters} \\
 		\midrule
@@ -70,13 +74,7 @@ Főként az ingyenesen hozzáférhető Mozilla Common Voice adatbázist haszálv
 
 Az eredmény finomítása végett próbálkoztam több tanítóadat beiktatásával, mellyel a validációs adathalmaz WER értéke csökkent, így javult. Sajnos a több tanítóadat lényeges megnövelte a tanítás idejét így erőforrások szűkében csökkentette a kísérletezésre jutó időt, ezért ezt a módszert csak kis mértékben alkalmaztam.
 
-(Augmentáció, Language Model...?)
-
 \section{Diplomaterv felépítése}
-
-A bevezető szokás szerint a diplomaterv felépítésével záródik, azaz annak rövid leírásával, hogy melyik fejezet mivel foglalkozik.
-
-FŐ RÉSZ
 
 A feladatkiírás elemzése fejezetben a sarkalatos pontok kerülnek részletezésre, kifejtésre. Ezen pontok kidolgozásának lehetőségei, esetleges nehézségei kerülnek említésre a felsorakoztatva a tervezés előtt felmerült, megvalósított és elvetett ötleteket.
 
@@ -85,5 +83,3 @@ Az előzmények és irodalomkutatás rész az eddigi megoldásokat részletezi �
 A tervezés fejeztet magába foglalja az előzetes döntéseket, a lehetséges kísérletek várható eredményét, a döntési lehetőségeket értékelve és az azok mögötti ötleteket, esetleges alternatívákkal kiegészítve. A végső soron válaszott megoldások alátámasztása és indoklása is megjelenik a részben.
 
 Az összefoglaló tartalmazza az elért eredmények bemutatását, azok értékelését és a végső következtetések levonását.
-
-FŐ RÉSZ VÉGE
