@@ -1,6 +1,7 @@
 import nemo.collections.asr as nemo_asr
 from nemo.collections.asr.metrics.wer import WER, word_error_rate
 import pytorch_lightning as pl
+import torch
 from ruamel.yaml import YAML
 from omegaconf import DictConfig
 from pathlib import Path
@@ -8,8 +9,8 @@ from pathlib import Path
 WORK_DIR = Path.cwd()
 
 # russian train settings
-config_path_ru = str(WORK_DIR / "configs" / "config_russian_15x5_lr_001.yaml")
-train_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "train.json")
+config_path_ru = str(WORK_DIR / "configs" / "config_russian_12x1_lr_001_short.yaml")
+train_manifest_ru = str(WORK_DIR / "datasets" / "radio_2" / "train_manifest.json")
 test_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 dev_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 
@@ -41,14 +42,18 @@ def train_model(config_path: str, train_manifest: str, test_manifest: str, dev_m
     trainer = pl.Trainer(gpus=1, max_epochs=100, resume_from_checkpoint=checkpoint)
 
     if checkpoint == "pretrained":
-        # Load pretrained encoder
-        asr_model_en = nemo_asr.models.EncDecCTCModel.from_pretrained("QuartzNet15x5Base-En")
+        # Load pretrained encoder 15x5
+        # asr_model_en = nemo_asr.models.EncDecCTCModel.from_pretrained("QuartzNet15x5Base-En")
 
         # Create uninitialized model
         asr_model = nemo_asr.models.EncDecCTCModel(cfg=DictConfig(params['model']), trainer=trainer)
 
         # Set encoder weights to pretrained
-        asr_model.encoder = asr_model_en.encoder
+        asr_model.encoder.load_state_dict(torch.load(
+            '/home/geripc/gitrepos/russian_asr/pretrained/JasperEncoder-STEP-174000.pt'))
+
+        # Same for 15x5
+        # asr_model.encoder = asr_model_en.encoder
 
         # Guess its needed...
         asr_model.setup_training_data(train_data_config=params['model']['train_ds'])
@@ -242,9 +247,9 @@ def run_transcription(checkpoint: str = None, json_path: str = None):
 
 if __name__ == '__main__':
     # train, choose settings from predifined ones, optionally add checkpoint path
-    model = train_model(config_path_ru, train_manifest_ru, test_manifest_ru, dev_manifest_ru,
-                        str(WORK_DIR / 'lightning_logs' / 'version_93' / 'checkpoints' / 'epoch=22.ckpt'))
-    model.save_to('latest_model_ru_small_15x5.nemo')
+    model = train_model(config_path_ru, train_manifest_ru, test_manifest_ru, dev_manifest_ru, str(WORK_DIR / 'lightning_logs' / 'version_97' /
+                                                                              'checkpoints' / 'epoch=62.ckpt'))
+    model.save_to('latest_model_ru_r2_12x1.nemo')
 
     # inference model , str(WORK_DIR / 'lightning_logs' / 'version_55' /
     #                                                                          'checkpoints' / 'epoch=16.ckpt')
