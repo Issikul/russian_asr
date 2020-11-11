@@ -9,8 +9,8 @@ from pathlib import Path
 WORK_DIR = Path.cwd()
 
 # russian train settings
-config_path_ru = str(WORK_DIR / "configs" / "config_russian_12x1_lr_001_short.yaml")
-train_manifest_ru = str(WORK_DIR / "datasets" / "radio_2" / "train_manifest.json")
+config_path_ru = str(WORK_DIR / "configs" / "config_russian_15x5_lr_001.yaml")
+train_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "custom_train.json")
 test_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 dev_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 
@@ -247,9 +247,13 @@ def run_transcription(checkpoint: str = None, json_path: str = None):
 
 if __name__ == '__main__':
     # train, choose settings from predifined ones, optionally add checkpoint path
-    model = train_model(config_path_ru, train_manifest_ru, test_manifest_ru, dev_manifest_ru, str(WORK_DIR / 'lightning_logs' / 'version_97' /
-                                                                              'checkpoints' / 'epoch=62.ckpt'))
-    model.save_to('latest_model_ru_r2_12x1.nemo')
+    model = train_model(config_path_ru, train_manifest_ru, test_manifest_ru, dev_manifest_ru, str(WORK_DIR / 'lightning_logs' / 'version_99' /
+                                                                                'checkpoints' / 'epoch=59.ckpt'))
+
+    # , str(WORK_DIR / 'lightning_logs' / 'version_97' /
+    # 'checkpoints' / 'epoch=62.ckpt'))
+
+    model.save_to('latest_model_ru_med_15x5.nemo')
 
     # inference model , str(WORK_DIR / 'lightning_logs' / 'version_55' /
     #                                                                          'checkpoints' / 'epoch=16.ckpt')
