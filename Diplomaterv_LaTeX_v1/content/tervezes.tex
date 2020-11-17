@@ -26,24 +26,18 @@ A NeMo a PyTorch nevű, Facebook-os kutatók által fejlesztett, mesterséges in
 
 A kísérleteimet QuartzNet architektúrájú modellekkel tervezem elvégezni a korábban említett alacsony paraméterszáma és magas precizitása végett. Az architektúra (4.1-es ábra) nagyban hasonlít egy másik Nvidia által fejlesztett architektúrához, a Jasper-hez. A modell B darab blokkból áll. Egy opcionálisan beállítható dropout modul jelenhet meg a modellben, illetve CTC loss függvény számítás található benne. A már említett blokkok további, R darab blokkból állnak, melyek konvolúciós rétegekből, batch normalizálókból és ReLU aktivációs függvényből épülnek fel. Ezáltal a QuartzNet pontos felépítésére QuartzNet BxR alakban szokás hivatkozni. A legnagyobb Nvidia által készített a Quartznet 15x5, mely 18.9 millió paraméterből áll.
 
-A QuartzNet a Jasper-től a konvolúciós rétegében tér el. A sima egy dimenziós konvolúciós réteg helyett, egy dimenziós idő-csatorna szerinti (time-channel separable) konvolúciós rétegeket használ. Ennek a fő tulajdonsága, hogy jóval kevesebb paramétert használ az eredeti koncepciónál. Ennek köszönhetően mélyebb hálókat lehet készíteni nagyobb konvolúciós filter-ekkel anélkül, hogy a a paraméterek száma, ezáltal a szükséges számítása kapacitás túlzottan megnövekedne.
-
-% https://arxiv.org/abs/1910.10261
+A QuartzNet a Jasper-től a konvolúciós rétegében tér el. A sima egy dimenziós konvolúciós réteg helyett, egy dimenziós time-channel separable konvolúciós rétegeket használ \cite{quartznet}. Ennek a fő tulajdonsága, hogy jóval kevesebb paramétert használ az eredeti koncepciónál. Ennek köszönhetően mélyebb hálókat lehet készíteni nagyobb konvolúciós filter-ekkel anélkül, hogy a a paraméterek száma, ezáltal a szükséges számítása kapacitás túlzottan megnövekedne.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=150mm, keepaspectratio]{figures/QuartzNet-architecture.png}
-\caption{QuartzNet architektúra.}
+\caption{QuartzNet architektúra. \cite{nemo}}
 \label{fig:TeXstudio}
 \end{figure}
-
-% https://developer.nvidia.com/blog/develop-smaller-speech-recognition-models-with-nvidias-nemo-framework/
 
 \subsection{TensorBoard}
 
 Az eredmények kiértékeléséhez és nyomonkövetéséhez a TensorBoard-ot, a TensorFlow egy vizualizációs toolkit-jét használom. Több funkcióval is rendelkezik, mint például a súlyok időbeni változásának vizualizációja, illetve a tanítóadatok, képek, szöveg vagy hang anyag kijelzése. Számomra a legfontosabb tulajdonsága az egyes metrikák, a loss és a pontosság, WER, értékének változása.
-
-% https://www.tensorflow.org/tensorboard
 
 A TensorBoard könnyedén indítható a következő parancs kiadásával: $tensorboard --logdir ~/lightning-logs$ , ahol a logdir kapcsoló adja meg melyik könyvtárban keressen TensorBoard kompatibilis log-okat, event-eket. A szükséges event-ek előállítása könnyedén végezhető a NeMo toolkit segítségével, mely támogatja a megfelelő callback függvények használatát, amik az event-ek batch-enkénti frissítsét tesznek lehetővé.
 
@@ -62,12 +56,9 @@ Az angol nyelvű eredményeket viszonyításként is fel tudtam használni az v�
 
 \subsection{Google Colab}
 
-A NeMo-val való ismerkedéshez felhasználtam az Nvidia által írt jupyter notebook-okat, melyeket könnyedén lehet az ingyenes használható Google Colab-ból futtatni. A Colab ingyenes hozzáférést nyújt GPU erőforrásokhoz, ahol egyenesen a böngészőből futtatható a Python kód és az eredményeket akár le is lehet tölteni.
+A NeMo-val való ismerkedéshez felhasználtam az Nvidia által írt jupyter notebook-okat\footnote{Tutorial notebook, \url{https://github.com/NVIDIA/NeMo/blob/main/tutorials/asr/01_ASR_with_NeMo.ipynb}}, melyeket könnyedén lehet az ingyenes használható Google Colab-ból\footnote{Google Colab, \url{https://colab.research.google.com/notebooks/intro.ipynb}} futtatni. A Colab ingyenes hozzáférést nyújt GPU erőforrásokhoz, ahol egyenesen a böngészőből futtatható a Python kód és az eredményeket akár le is lehet tölteni.
 
 Sajnos a Colab bizonyos órán belül felfüggeszti a munkamenetet, illetve a nagy mennyiségű adatok munkamenetenkénti le- és feltöltése időigényes. Ezért a rövidebb adatbázisokon, mint például az AN4-en, túl nem jelent a tesztelésen és toolkit-tel való ismerkedésen túl megoldást.
-
-% https://github.com/NVIDIA/NeMo/blob/main/tutorials/asr/01_ASR_with_NeMo.ipynb
-% Google Colab, https://colab.research.google.com/notebooks/intro.ipynb
 
 \section{Adatbázisok}
 
@@ -85,10 +76,9 @@ Az adatbázisok esetén megvizsgálandó, hogy hány beszélő hangja találhat�
 
 \subsection{AN4}
 
-Az "AN4" vagy "census" angol nyelvű beszéd adatbázist 1991-ben vették fel a Carnegie Mellon Egyetemen. A különböző beszélők betűzve mondanak olyan adatokat mint születési dátum, telefonszám, név vagy egyéb véletlenszerűen generált, előre definiált kontroll szavakat.
+Az AN4\cite{an4} vagy "census" angol nyelvű beszéd adatbázist 1991-ben vették fel a Carnegie Mellon Egyetemen. A különböző beszélők betűzve mondanak olyan adatokat mint születési dátum, telefonszám, név vagy egyéb véletlenszerűen generált, előre definiált kontroll szavakat.
 
 % részletes infó: "Acoustical and environmental robustness in automatic speech recognition", by Alex Acero, published by Kluwer Academic Publishers, 1993
-% http://www.speech.cs.cmu.edu/databases/an4/README.html
 
 Az adatbázis két különböző részre van osztva, az első a tanítást szolgálja, míg a második része a tesztelést. Ez előbbi 50 percnyi beszédet tartalmaz, míg a tesztelésre szolgáló rész 6 percet. Rövidségéből adódóan gyorsan tanítható és értékelhető, mely ideálissá teszi gyors kalibrálási, beállítási feladatok megoldására.
 
@@ -100,9 +90,7 @@ Az elérhető hanganyag fele tiszta, könnyen érthető, míg másik fele zajosa
 
 \subsection{Mozilla Common Voice}
 
-A Mozilla Common Voice egy Mozilla által indított projekt. Célja, hogy különböző nyelveken, így oroszul is, a közösség erejét felhasználva gyűjtsön anonim hanganyagokat. Bárki felveheti a saját hangját, előre meghatározott szövegeket felolvasva, illetve érvényesíthet mások által felolvasott szövegeket. A biztonság kedvéért egy szöveget két személynek is jóvá kell hagynia.
-
-% https://voice.mozilla.org/
+A Mozilla Common Voice\footnote{Mozilla Common Voice weboldala, \url{https://voice.mozilla.org/}} egy Mozilla által indított projekt. Célja, hogy különböző nyelveken, így oroszul is, a közösség erejét felhasználva gyűjtsön anonim hanganyagokat. Bárki felveheti a saját hangját, előre meghatározott szövegeket felolvasva, illetve érvényesíthet mások által felolvasott szövegeket. A biztonság kedvéért egy szöveget két személynek is jóvá kell hagynia.
 
 Orosz hangból durván 100 órányi áll rendelkezésre, de tüzetesebb vizsgálat után észrevettem, hogy ebből ~10-10 óra a teszt és dev adathalmaz mérete, míg ~20 óra a tanító adathalmazé. A maradék ~60 órából több azért nincs használva, mert megismételt szöveget olvasnak fel benne, vagy rövid hanganyagokat tartalmaz. A tanító adathalmazt sikerült feldúsítsam ~45 óra környékére azáltal, hogy belevettem a 100 órányi hangból az összes olyan hangot, melyek nem voltak benne sem a teszt sem a dev adathalmazokban.
 
@@ -110,10 +98,8 @@ Orosz hangból durván 100 órányi áll rendelkezésre, de tüzetesebb vizsgál
 
 \subsection{További orosz adatbázisok}
 
-Mivel a Mozilla Common Voice orosz nyelvű adatbázisa legfeljebb 45 órányi tanítóadattal rendelkezik, míg a LibriSpeech-é mely eredményeihez viszonyítani szeretnénk 100 órán lett tanítva, ezért több tanítóadatot is be kellett vonni. Egy ingyenesen hozzáférhető github-on található projektben több adatbázis is található, többnyire .opus formátumban. Elsősorban a radio2 adatbázissal dolgoztam.
+Mivel a Mozilla Common Voice orosz nyelvű adatbázisa legfeljebb 45 órányi tanítóadattal rendelkezik, míg a LibriSpeech-é mely eredményeihez viszonyítani szeretnénk 100 órán lett tanítva, ezért több tanítóadatot is be kellett vonni. Egy ingyenesen hozzáférhető github-on található projektben\footnote{Ingyenes orosz adatbázisok, \url{https://github.com/snakers4/open_stt/blob/master/README.md}} több adatbázis is található, többnyire .opus formátumban. Elsősorban a radio2 adatbázissal dolgoztam.
 
-Fontos nem elfelejteni a Mozzila Common Voice és egyéb rádión található hanganyagok közötti különbséget. Míg előbbi többnyire bediktált, felolvasott szöveget tartalmaz különböző minőségben és tempóban, utóbbi kötetlenebb, tisztább minőségű beszélgetéseket is tartalmazhat.
+Fontos megemlíteni a Mozzila Common Voice és egyéb rádión található hanganyagok közötti lehetséges különbségeket. Míg előbbi többnyire bediktált, felolvasott szöveget tartalmaz különböző minőségben és tempóban, utóbbi kötetlenebb, tisztább minőségű beszélgetéseket is tartalmazhat.
 
 % radio_2 vs mozilla adatbázis összehasonlítás?
-
-% https://github.com/snakers4/open_stt/blob/master/README.md
