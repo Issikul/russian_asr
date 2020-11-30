@@ -4,15 +4,28 @@
 
 \section{Különböző architektúrák összehasonlítása}
 
-A nagyobb modellek pontosabb eredményeket, alacsonyabb WER-t értek el adatbázistól függetlenül. Viszont ez az idő drasztikus növekedésével járt együtt. 12x1-es architektúra x millió paramétert, míg a 15x5-ös architektúra 18.9 millió paramétert használt. Érdemes minél több erőforrással dolgozni, az idő csökkentése végett és a mélyebb háló útján elindulni a precízebb végeredmény céljából.
+A nagyobb modellek pontosabb eredményeket és alacsonyabb WER-t értek el adatbázistól függetlenül. Viszont ez az idő drasztikus növekedésével járt együtt. 12x1-es architektúra X millió paramétert, míg a 15x5-ös architektúra 18.9 millió paramétert használt. Időben ez egy jelent meg, hogy fele annyi epoch-hoz másfélszer annyi időre volt szüksége, ami 3-szoros sebesség csökkenést eredményez. Következtetésképp lehetőség szerint érdemes minél több erőforrással dolgozni, az idő csökkentése végett és a mélyebb háló útján elindulni a precízebb végeredmény céljából.
 
-% kép
+
+% X MILLIÓ HELYETT PONTOS ÉRTÉK!!!
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=100mm, keepaspectratio]{figures/architecture_12x1_vs_15x5.png}
+\caption{15x5-ös - narancs és 12x1-es - kék architektúrák.}
+\end{figure}
+
+A 6.1-es ábrán látható viszont a mélyebb, összetettebb háló előnye, hiszen ekvseebb epoch alatt pontosabb eredményeket, alacsonyabb validation WER értéket sikerült elérni vele, mint a 12x1 architektúrával.
 
 \section{Véletlenszerűen inicializált vs transfer learning}
 
-Minden esetben megállapítható, hogy a transfer learning nagyban javította az elért eredményeket, annak ellenére, hogy az átvett modell súlyai egy másik ábécével, másik nyelven lettek tanítva. Látható, hogy az emberek által generált hangok, a nyelvek struktúrája és logikája erősen összefügg.
+Minden esetben megállapítható, hogy a transfer learning nagyban javította az elért eredményeket, annak ellenére, hogy az átvett modell súlyai egy másik ábécével, másik nyelven lettek tanítva.  Látható, hogy az emberek által generált hangok, a nyelvek struktúrája és logikája erősen összefügg.
 
-% kép
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=100mm, keepaspectratio]{figures/12x1_pretrained_vs_random.png}
+\caption{12x1-es architektúrák validation WER étékei pretrained - vörös és random inicializált - narancs súlyokkal.}
+\end{figure}
 
 \section{Mozilla Common Voice vs Radio2}
 
@@ -28,9 +41,7 @@ A jobb WER eredmények végett alkalmazhatóak a neurális hálók esetén a gya
 
 Nagyobb adatbázisok alkalmazása jobb általánosítást eredményez, ami a validációs WER érték csökkenésével jár együtt. Érdemes a különböző adatbázisokat összefogni és akár több ezer órányi adaton tanítani.
 
-A sebesség növeléséhez a NeMo toolkit több lehetőséget is kínál. Az egyik a Mixed Precision, a másik módszer több GPU bevonása a tanítási folyamatba. Utóbbi esetben több, előre meghatározott GPU közt osztódik el az adat és kerül gyorsabb kiértékelésre.
-
-% https://docs.nvidia.com/deeplearning/nemo/neural_mod_bp_guide/index.html
+A sebesség növeléséhez a NeMo toolkit több lehetőséget is kínál. Az egyik a Mixed Precision\footnote{Mixed Precision lehetőség magyarázat az NVIDIA oldalán: \url{https://docs.nvidia.com/deeplearning/nemo/neural_mod_bp_guide/index.html}}, a másik módszer több GPU bevonása a tanítási folyamatba. Utóbbi esetben több, előre meghatározott GPU közt osztódik el az adat és kerül gyorsabb kiértékelésre.
 
 Lehetséges még a tanítóadat pontos behatárolása. Mivel tanítás közben, a tanítási batch-ekbe különböző hosszúságú hangfájlok kerülnek betöltésre, így például egy 16-os batch méret esetén a GPU hamar kiértékeli az 5 másodperc hosszú hangfájlokat, de nem tud tovább haladni, míg a leghosszabbat, például egy 14 másodperceset nem értékelt ki. Ezen probléma elkerülése, és a GPU jobb kihasználása végett célszerű nagyjából egyforma hosszúságú adatokat felhasználni a tanításhoz.
 
