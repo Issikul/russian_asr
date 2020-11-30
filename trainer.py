@@ -10,7 +10,7 @@ WORK_DIR = Path.cwd()
 
 # russian train settings
 config_path_ru = str(WORK_DIR / "configs" / "config_russian_12x1_lr_001_short.yaml")
-train_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "custom_train.json")
+train_manifest_ru = str(WORK_DIR / "datasets" / "radio_2" / "train_manifest.json")
 test_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 dev_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 
