@@ -4,11 +4,11 @@
 
 \section{Hagyományostól az end-to-end-ig}
 
-A hagyományos ASR-ok (automatikus beszédfelismerők) több elemből álló, összetett rendszerek, melyek manapság igen pontosan meg tudják állapítani mi volt az eredetileg elhangzott szöveg, és leképezik azt írásos formába. Az egyik legelterjedtebb a HMM (Rejtett Markov Modell) alapú beszédfelismerő rendszer [1]. A rendszernek több eleme is van: egy dekóder mely tartalmaz egy nyelv modellt, akusztikus modelleket és egy kiejtési szótárat is, illetve tartalmaz egy elemet, mely a bemeneti hangból a kiemeli jellemzőket, átalakítja őket a rendszer által kezelhető formájúvá. A HMM-en alapuló rendszerek fő eleme a Viterbi algoritmus \cite{viterbi}, mely dinamikus programozást alkalmazva találja meg a legjobb illeszkedést a bemeneti szöveg és az adott beszéd modell közt.
+A hagyományos ASR-ok (automatikus beszédfelismerők) több elemből álló, összetett rendszerek, melyek manapság igen pontosan meg tudják állapítani mi volt az eredetileg elhangzott szöveg, és leképezik azt írásos formába. Az egyik legelterjedtebb a HMM (Rejtett Markov Modell) alapú beszédfelismerő rendszer. A rendszernek több eleme is van: egy dekóder mely tartalmaz egy nyelv modellt, akusztikus modelleket és egy kiejtési szótárat is, illetve tartalmaz egy elemet, mely a bemeneti hangból a kiemeli jellemzőket, átalakítja őket a rendszer által kezelhető formájúvá. A HMM-en alapuló rendszerek fő eleme a Viterbi algoritmus \cite{viterbi}, mely dinamikus programozást alkalmazva találja meg a legjobb illeszkedést a bemeneti szöveg és az adott beszéd modell közt.
 
 A rendszer különböző elemeo erősen függenek egymástól. Ha az egyik nem rendeltetés szerűén működik és rossz kimenetet ad, akár saját vagy egy korábbi elem hibájából kifolyólag az befolyásolja a többi elemet is, így elrontva, torzítva a kapott végeredményt. Az egyes elemeket külön-külön kell kalibrálni, tanítani és tökéletesíteni.
 
-Ezzel szemben, a napjainkban egyre inkább népszerű, E2E (end-to-end) alapú beszédfelismerő rendszerek [2] sokkal egyszerűbb, kevesebb köztes elemet igénylő megközelítést nyújtanak. Bizonyos szituációkban, ahol egy specifikusabb szövegkörnyezetben, pl. pénzügyi vagy jogi, elhangzó szavak azonosítása a cél, már a hagyományos ASR rendszereknél is pontosabb eredményeket képesek produkálni.
+Ezzel szemben, a napjainkban egyre inkább népszerű, E2E (end-to-end) alapú beszédfelismerő rendszerek sokkal egyszerűbb struktúrájúak, kevesebb különálló elemet igénylő megközelítést nyújtanak. Bizonyos szituációkban, ahol egy specifikusabb szövegkörnyezetben, pl. pénzügyi vagy jogi, elhangzó szavak azonosítása a cél, már a hagyományos ASR rendszereknél is pontosabb eredményeket képesek produkálni.
 
 Az E2E rendszerek mély neurális hálókon alapszanak, közvetlen bemenetük a nyers hang, kimenetük pedig a becsült szöveg. Természetesen a neurális háló bemenetéhez a hangot még előre fel kell dolgozni, amit pre-processing-nek neveznek. A háló kimenete pedig az egyes bemeneti időegységekre becsült karakterek valószínűségei melyekből ki kell nyerni a végső, feltételezett szöveget.
 
@@ -87,7 +87,7 @@ Megemlítendő még a Bi-directional (két irányú) réteg, amely mögött az a
 
 \subsection{CTC dekódolás és loss számítás}
 
-A CTC (Connectionist Temporal Classification) \cite{ctc} funkciója a kimeneti dekódolása, a válasz kiértékelése, mely folyamán átalakítja a kimenetet a megadott címkék valószínűségi szekvenciájára. A címkék lehetnek az egyes karakterek, amik egy adott nyelvben előfordulhatnak. Ez esetben a CTC kiértékeli, hogy melyik betű vagy egyéb karakter hangzott el adott időpillanatban, adott bemenetre [8]. Ereje abban rejlik, hogy nincs szükség a kiértékelésnél a kimeneteket egyenként, karakter szinten összekötni az elvárt szöveggel, elegendő a kimeneti szöveget megadni, azt, amit kapni szeretnék az adott bemenetre. Másik fontos előnye, hogy a felismert szöveget nem szükséges külön feldolgozni, mivel átalakítja azt a végleges, feltételezett formára. Feldolgozza, hogy egy hosszú hang esetén, mint az ’ú’ több időpillanaton keresztül is hallatszik az ’ú’ betű, de nekünk a végeredményben csak egy darab ’ú’ szükséges.
+A CTC (Connectionist Temporal Classification) \cite{ctc} funkciója a kimenet dekódolása, a válasz kiértékelése, mely folyamán átalakítja a kimenetet a megadott címkék valószínűségi szekvenciájára és a tanításhoz szükséges hiba, a loss kiszámítása. A címkék lehetnek az egyes karakterek, amik egy adott nyelvben előfordulhatnak. Ez esetben a CTC kiértékeli, hogy melyik betű vagy egyéb karakter hangzott el adott időpillanatban, adott bemenetre [8]. Ereje abban rejlik, hogy nincs szükség a kiértékelésnél a kimeneteket egyenként, karakter szinten összekötni az elvárt szöveggel, elegendő a kimeneti szöveget megadni, azt, amit kapni szeretnék az adott bemenetre. Másik fontos előnye, hogy a felismert szöveget nem szükséges külön feldolgozni, mivel átalakítja azt a végleges, feltételezett formára. Feldolgozza, hogy egy hosszú hang esetén, mint az ’ú’ több időpillanaton keresztül is hallatszik az ’ú’ betű, de nekünk a végeredményben csak egy darab ’ú’ szükséges.
 
 Felmerülhet egy probléma az összevonással, amikor olyan egymást követő betűket vonunk össze, melyek a szóban külön szerepelnek, mint például az ’ellentét’ szóban. Ennek elkerülése végett bevezet a CTC egy üres karaktert, ami nem egyenlő a szóközzel, és ezt olyan időegységekhez helyezi, ahol nem ismerhető fel betű a megadott szótárból, karaktergyűjteményből. Az ilyen üres karakterrel elválasztott betűket nem fogja összevonni kiértékeléskor.
 
@@ -95,7 +95,7 @@ A neurális háló által végzett kiértékelés után az ember által feldolgo
 
 További feladata a neurális háló tanításához használt loss kiszámítása \cite{ctc_sid}. A hiba számítása során a szempontunkból lényegtelen milyen karaktersorozattal jut el a végeredményhez, csupán az a cél, hogy pontosan az adott kimenetet eredményezze. A loss-t tehát úgy számítja, hogy megnézi az összes olyan karaktersorozat valószínűségét, melyből megkaphatja a kívánt eredményt és összegzi őket. Ezáltal az eredeti GT (Ground Truth) szöveg valószínűségi értéke magas, hogyha a megszerzéséhez szükséges kombinációk értékének az összege magas.
 
-A CTC loss számítása a 3.3-as, 3.4-es és 3.5-ös képeltek alapján történik, ahol GT az elvárt szöveg, X az egyes akusztikus keretek, C egy adott karaktersorozat és $c_t$ egy adott karakter adott időpillanatban.
+A tanításhoz szükséges CTC loss számítása a 3.3-as, 3.4-es és 3.5-ös képeltek alapján történik, ahol GT az elvárt szöveg, X az egyes akusztikus keretek, C egy adott karaktersorozat és $c_t$ egy adott karakter adott időpillanatban.
 \begin{align}
 CTC loss&=-\log{P(GT | X)}.
 \end{align}
@@ -109,6 +109,8 @@ Egy adott, helyes karaktersorozat valószínűsége:
 \begin{align}
 P(C | X)&=\prod_{t=1}^{T} y(c_t, t)).
 \end{align}
+
+A neurális háló kimenetén megadja a megadott karakterek valószínűségi mátrixát minden időpillanatban. Mivel a loss kiszámítása a GT szöveg összes lehetséges illeszkedés alapján történik, ezért lényegtelen, hogy hogyan helyezkedik el pontosan a megadott hanganyagban. A fenti képletekkel kiszámítható egy tanító szöveg valószínűsége a megadott GT és a neurális háló által adott valószínűségi mátrix alapján. A cél, hogy aképpen tanítsuk a hálót, hogy magas valószínűségeket kapjunk az elvárt ground truth kimenetkre. Ezt úgy lehet elérni, hogy minimalizáljuk a tanítóadathalmazra kapott loss értéket, ahol a loss a valószínűségek logaritmikus értéknek negatív összege. Az egyes loss értékek kiszámításához a valószínűség kiértékelése után elég annak logaritmusát venni, majd negálni az eredményt. A neuron háló tanításához a loss grádiensét kell kiszámolni, azt az értéket amivel a többdimenziós térben a legnagyobb csökkenést lehet elérni, és az egyes paramétereket, súlyokat frissíteni vele\cite{ctc}.
 
 \section{Létező megoldások}
 
