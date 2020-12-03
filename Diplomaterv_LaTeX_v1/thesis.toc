@@ -21,26 +21,26 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.4}Következtetések}{17}{section.3.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Tervezés}{18}{chapter.4}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Tervezés, döntési lehetőségek értékelése}{18}{section.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Python}{18}{subsection.4.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Fejlesztési nyelv}{18}{subsection.4.1.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.2}NeMo}{18}{subsection.4.1.2}%
 \select@language {magyar} \contentsline {subsubsection}{\numberline {4.1.2.1}PyTorch}{19}{subsubsection.4.1.2.1}%
 \select@language {magyar} \contentsline {subsubsection}{\numberline {4.1.2.2}QuartzNet}{19}{subsubsection.4.1.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.1.3}TensorBoard}{20}{subsection.4.1.3}%
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Angol, majd orosz}{22}{section.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1.3}TensorBoard}{21}{subsection.4.1.3}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Angol, majd orosz}{21}{section.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Google Colab}{22}{subsection.4.2.1}%
-\select@language {magyar} \contentsline {section}{\numberline {4.3}Adatbázisok}{22}{section.4.3}%
+\select@language {magyar} \contentsline {section}{\numberline {4.3}Adatbázisok}{23}{section.4.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.1}Adatok előfeldolgozása}{23}{subsection.4.3.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.2}AN4}{23}{subsection.4.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.2}AN4}{24}{subsection.4.3.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.3}LibriSpeech}{24}{subsection.4.3.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.4}Mozilla Common Voice}{24}{subsection.4.3.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.5}További orosz adatbázisok}{24}{subsection.4.3.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.5}További orosz adatbázisok}{25}{subsection.4.3.5}%
 \select@language {magyar} \contentsline {chapter}{\numberline {5}Implementáció}{26}{chapter.5}%
 \select@language {magyar} \contentsline {section}{\numberline {5.1}Tanítóadatok előkészítése}{26}{section.5.1}%
 \select@language {magyar} \contentsline {section}{\numberline {5.2}Modellek kimentése és betöltése}{26}{section.5.2}%
 \select@language {magyar} \contentsline {section}{\numberline {5.3}Kalibráció angol nyelv segítségével}{27}{section.5.3}%
 \select@language {magyar} \contentsline {section}{\numberline {5.4}Orosz nyelvű hálók}{29}{section.5.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}NeMo config fájl}{29}{subsection.5.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Szükséges módosítások}{30}{subsection.5.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Szükséges módosítások}{29}{subsection.5.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.3}Architektúrák}{30}{subsection.5.4.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.4}Transfer learning}{30}{subsection.5.4.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {6}Eredmények ismertetése és összefoglalás}{32}{chapter.6}%
@@ -49,26 +49,8 @@
 \select@language {magyar} \contentsline {section}{\numberline {6.3}Mozilla Common Voice vs Radio2}{33}{section.6.3}%
 \select@language {magyar} \contentsline {section}{\numberline {6.4}Javítási lehetőségek}{34}{section.6.4}%
 \select@language {magyar} \contentsline {section}{\numberline {6.5}Végső gondolatok}{34}{section.6.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {7}\LaTeX -eszközök}{36}{chapter.7}%
-\select@language {magyar} \contentsline {section}{\numberline {7.1}A szerkesztéshez használatos eszközök}{36}{section.7.1}%
-\select@language {magyar} \contentsline {section}{\numberline {7.2}A dokumentum lefordítása Windows alatt}{36}{section.7.2}%
-\select@language {magyar} \contentsline {section}{\numberline {7.3}Eszközök Linuxhoz}{38}{section.7.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {8}A dolgozat formai kivitele}{40}{chapter.8}%
-\select@language {magyar} \contentsline {section}{\numberline {8.1}A dolgozat kimérete}{40}{section.8.1}%
-\select@language {magyar} \contentsline {section}{\numberline {8.2}A dolgozat nyelve}{40}{section.8.2}%
-\select@language {magyar} \contentsline {section}{\numberline {8.3}A dokumentum nyomdatechnikai kivitele}{41}{section.8.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {9}A \LaTeX -sablon használata}{42}{chapter.9}%
-\select@language {magyar} \contentsline {section}{\numberline {9.1}Címkék és hivatkozások}{42}{section.9.1}%
-\select@language {magyar} \contentsline {section}{\numberline {9.2}Ábrák és táblázatok}{43}{section.9.2}%
-\select@language {magyar} \contentsline {section}{\numberline {9.3}Felsorolások és listák}{45}{section.9.3}%
-\select@language {magyar} \contentsline {section}{\numberline {9.4}Képletek}{46}{section.9.4}%
-\select@language {magyar} \contentsline {section}{\numberline {9.5}Irodalmi hivatkozások}{48}{section.9.5}%
-\select@language {magyar} \contentsline {section}{\numberline {9.6}A dolgozat szerkezete és a forrásfájlok}{52}{section.9.6}%
-\select@language {magyar} \contentsline {section}{\numberline {9.7}Alapadatok megadása}{55}{section.9.7}%
-\select@language {magyar} \contentsline {section}{\numberline {9.8}Új fejezet írása}{55}{section.9.8}%
-\select@language {magyar} \contentsline {section}{\numberline {9.9}Definíciók, tételek, példák}{55}{section.9.9}%
-\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{56}{chapter*.20}%
-\select@language {magyar} \contentsline {chapter}{Függelék}{57}{appendix*.21}%
-\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio felülete}{57}{section.F.1}%
-\select@language {magyar} \contentsline {section}{\numberline {F.2}Válasz az ,,Élet, a világmindenség, meg minden'' kérdésére}{58}{section.F.2}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{57}{chapter*.20}%
+\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{36}{chapter*.16}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{37}{chapter*.16}%
+\select@language {magyar} \contentsline {chapter}{Függelék}{39}{appendix*.18}%
+\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio felülete}{39}{section.F.1}%
+\select@language {magyar} \contentsline {section}{\numberline {F.2}Válasz az ,,Élet, a világmindenség, meg minden'' kérdésére}{40}{section.F.2}%
