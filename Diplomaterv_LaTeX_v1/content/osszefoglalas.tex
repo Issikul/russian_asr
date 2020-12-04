@@ -24,13 +24,11 @@ Minden esetben megállapítható, hogy a transfer learning nagyban javította az
 \caption{12x1-es architektúrák validation WER étékei pretrained - vörös és random inicializált - narancs súlyokkal.}
 \end{figure}
 
-\section{Mozilla Common Voice vs Radio2}
+\section{Mozilla Common Voice és Radio2}
 
-A két adatbázis fő különbsége az adatok mennyisége volt. Látható, hogy ...
+A két adatbázis fő különbsége az adatok mennyisége volt. A Radio2-ből nagyjából 200 órányi adatot használtam fel, míg a Mozilla Common Voice-ból 45 órányit. Emiatt a Radio2-vel hosszabb tanításokra, de jobb általános eredményekre lehetett számítani.
 
-% kép
-
-Megjegyzendő, hogy a hanganyagok minősége is eltérő, ez tetten érhető...
+Ennek megfigyelésére a két különböző adatbázison tanított modellek teljesítményét kell megvizsgálni. A Mozilla Common Voice adathalmazon tanított modell ~29\%-al jobb WER eredményt ért el a Radio2 adathalmazon tanított modellnél a Mozilla Common Voice-hoz tartozó teszt adathalamzon. Viszont a Radio2-ből leválasztott teszt adathalmazon lényegsebb, ~37\% körüli érték volt az eltérés a Radio2 adathalmazon tanult adatok javára. Látható, hogy a nagyobb adatmennyiség egy általánosabban jobban teljesítő modellt eredményezett.
 
 \section{Javítási lehetőségek}
 

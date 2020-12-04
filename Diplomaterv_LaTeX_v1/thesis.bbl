@@ -93,22 +93,32 @@
 \def\bibInSelf#1{In u\H{o}: }
 \csname bibOverride\endcsname
 
-\bibitem{DipPortal}
-{Budapesti Műszaki és Gazdaságtudományi Egyetem Villamosmérnöki és
-  Informatikai Kar}:
-\bibNewBlock Diplomaterv portál (2011. február 26.).
-\bibNewBlock \url{http://diplomaterv.vik.bme.hu/}.
+\bibitem{las}
+William Chan\bibAnd 0Navdeep Jaitly\bibAnd 0Quoc~V. Le\bibAnd 2Oriol Vinyals:
+\bibNewBlock Listen, attend and spell.
+\bibNewBlock 2015.
 
-\bibitem{Candy86}
-James~C. Candy:
-\bibNewBlock Decimation for sigma delta modulation.
-\bibNewBlock 34. \'evf. (1986.\ 01) 1. sz., 72--76.~p.
-\bibNewBlock \doi{10.1109/TCOM.1986.1096432}.
+\bibitem{w2l}
+Ronan Collobert\bibAnd 0Christian Puhrsch\bibAnd 2Gabriel Synnaeve:
+\bibNewBlock Wav2letter: an end-to-end convnet-based speech recognition system.
+\bibNewBlock 2016.
 
 \bibitem{an4}
 {Evandro Gouvêa}:
 \bibNewBlock An4 hivatalos oldala (2020. november).
 \bibNewBlock \url{http://www.speech.cs.cmu.edu/databases/an4/}.
+
+\bibitem{attention}
+Kyu~J. Han\bibAnd 0Ramon Prieto\bibAnd 0Kaixing Wu\bibAnd 2Tao Ma:
+\bibNewBlock State-of-the-art speech recognition using multi-stream
+  self-attention with dilated 1d convolutions.
+\bibNewBlock 2019.
+
+\bibitem{timedepth}
+Awni Hannun\bibAnd 0Ann Lee\bibAnd 0Qiantong Xu\bibAnd 2Ronan Collobert:
+\bibNewBlock Sequence-to-sequence speech recognition with time-depth separable
+  convolutions.
+\bibNewBlock 2019.
 
 \bibitem{ctc}
 {Harald Scheidl}:
@@ -116,50 +126,22 @@ James~C. Candy:
 \bibNewBlock
   \url{https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c}.
 
-\bibitem{Jeney}
-Gábor Jeney:
-\bibNewBlock Hogyan néz ki egy igényes dokumentum? {N}éhány szóban az
-  alapvető tipográfiai szabályokról, 2014.
-\bibNewBlock \url{http://www.mcl.hu/~jeneyg/kinezet.pdf}.
-
 \bibitem{nemo}
 {Jocelyn Huang, Yang Zhang, Boris Ginsburg, Poonam Chitale}.
 
-\bibitem{KissPhD}
-Peter Kiss:
-\bibNewBlock Adaptive digital compensation of analog circuit imperfections for
-  cascaded delta-sigma analog-to-digital converters, 2000.\ 04.
-
-\bibitem{Lee87}
-Wai~L. Lee\bibAnd 1Charles~G. Sodini:
-\bibNewBlock A topology for higher order interpolative coders.
-\bibNewBlock In {\em Proc.\ of the IEEE International Symposium on Circuits and
-  Systems} (kon\-fe\-ren\-cia\-anyag).
-\bibNewBlock 1987.\ 4-7~05., 459--462.~p.
-
-\bibitem{Mkrtychev:1997}
-Alexey Mkrtychev:
-\bibNewBlock Models for the logic of proofs.
-\bibNewBlock In Sergei Adian\bibAnd 1Anil Nerode\bibEd 1: {\em Logical
-  Foundations of Computer Science}.
-\bibNewBlock Lecture Notes in Computer Science sorozat, \bibVolume {1234.}.
-\bibNewBlock 1997, Springer Berlin Heidelberg, 266--275.~p.
-\bibNewBlock ISBN 978-3-540-63045-6.
+\bibitem{cnn}
+{Rohit Thanki and Surekha Borra}:
+\bibNewBlock Machine learning in bio-signal analysis and diagnostic imaging
+  (2019).
 \bibNewBlock
-\bibUrll{URL} >http://dx.doi.org/10.1007/3-540-63045-7_27>.
+  \url{https://www.sciencedirect.com/topics/engineering/convolutional-neural-network}.
 
 \bibitem{quartznet}
 {Samuel Kriman, Stanislav Beliaev, Boris Ginsburg, Jocelyn Huang, Oleksii
   Kuchaiev, Vitaly Lavrukhin, Ryan Leary, Jason Li, Yang Zhang}:
 \bibNewBlock Quartznet: Deep automatic speech recognition with 1d time-channel
   separable convolutions.
-\bibNewBlock \url{https://arxiv.org/abs/1910.10261}, 2019.\ 10.
-
-\bibitem{Schreier00}
-Richard Schreier:
-\bibNewBlock {\em The Delta-Sigma Toolbox v5.2}.
-\bibNewBlock Oregon State University, 2000.\ 01.
-\bibNewBlock \url{http://www.mathworks.com/matlabcentral/fileexchange/}.
+\bibNewBlock 2019.\ 10.
 
 \bibitem{ctc_sid}
 {Siddhantl}:
@@ -172,11 +154,6 @@ Richard Schreier:
 \bibNewBlock Nyelvek világa (2018. május).
 \bibNewBlock
   \url{https://www.visualcapitalist.com/wp-content/uploads/2018/05/world-of-languages.html}.
-
-\bibitem{Wettl04}
-Ferenc Wettl\bibAnd 0Gyula Mayer\bibAnd 2Péter Szabó:
-\bibNewBlock {\em \LaTeX~kézikönyv}.
-\bibNewBlock 2004, Panem Könyvkiadó.
 
 \bibitem{tortenelem}
 {Wikipedia}:
@@ -203,5 +180,14 @@ Ferenc Wettl\bibAnd 0Gyula Mayer\bibAnd 2Péter Szabó:
 {Wikipedia}:
 \bibNewBlock Viterbi algoritmus (2020. november).
 \bibNewBlock \url{https://en.wikipedia.org/wiki/Viterbi_algorithm}.
+
+\bibitem{Zeghidour2018}
+Neil Zeghidour\bibAnd 0Nicolas Usunier\bibAnd 0Gabriel Synnaeve\bibAnd 0Ronan
+  Collobert\bibAnd 2Emmanuel Dupoux:
+\bibNewBlock End-to-end speech recognition from the raw waveform.
+\bibNewBlock In {\em Proc. Interspeech 2018} (kon\-fe\-ren\-cia\-anyag).
+\bibNewBlock 2018, 781--785.~p.
+\bibNewBlock
+\bibUrll{URL} >http://dx.doi.org/10.21437/Interspeech.2018-2414>.
 
 \end{thebibliography}

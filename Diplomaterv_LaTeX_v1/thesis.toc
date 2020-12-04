@@ -40,15 +40,15 @@
 \select@language {magyar} \contentsline {section}{\numberline {5.3}Kalibráció angol nyelv segítségével}{27}{section.5.3}%
 \select@language {magyar} \contentsline {section}{\numberline {5.4}Orosz nyelvű hálók}{29}{section.5.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}NeMo config fájl}{29}{subsection.5.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Szükséges módosítások}{29}{subsection.5.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Szükséges módosítások}{30}{subsection.5.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.3}Architektúrák}{30}{subsection.5.4.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.4}Transfer learning}{30}{subsection.5.4.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.4}Transfer learning}{31}{subsection.5.4.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {6}Eredmények ismertetése és összefoglalás}{32}{chapter.6}%
 \select@language {magyar} \contentsline {section}{\numberline {6.1}Különböző architektúrák összehasonlítása}{32}{section.6.1}%
 \select@language {magyar} \contentsline {section}{\numberline {6.2}Véletlenszerűen inicializált vs transfer learning}{32}{section.6.2}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Mozilla Common Voice vs Radio2}{33}{section.6.3}%
+\select@language {magyar} \contentsline {section}{\numberline {6.3}Mozilla Common Voice és Radio2}{33}{section.6.3}%
 \select@language {magyar} \contentsline {section}{\numberline {6.4}Javítási lehetőségek}{34}{section.6.4}%
-\select@language {magyar} \contentsline {section}{\numberline {6.5}Végső gondolatok}{34}{section.6.5}%
+\select@language {magyar} \contentsline {section}{\numberline {6.5}Végső gondolatok}{35}{section.6.5}%
 \select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{36}{chapter*.16}%
 \select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{37}{chapter*.16}%
 \select@language {magyar} \contentsline {chapter}{Függelék}{39}{appendix*.18}%

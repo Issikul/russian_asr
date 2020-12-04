@@ -9,8 +9,8 @@ from pathlib import Path
 WORK_DIR = Path.cwd()
 
 # russian train settings
-config_path_ru = str(WORK_DIR / "configs" / "config_russian_12x1_lr_001_short.yaml")
-train_manifest_ru = str(WORK_DIR / "datasets" / "radio_2" / "train_manifest.json")
+config_path_ru = str(WORK_DIR / "configs" / "config_russian_15x5_lr_001_8_8_9_3.yaml")
+train_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 test_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 dev_manifest_ru = str(WORK_DIR / "datasets" / "mozilla" / "ru" / "test.json")
 
@@ -225,6 +225,9 @@ def run_transcription(checkpoint: str = None, json_path: str = None):
     # Load ASR model from checkpoint
     asr_model = nemo_asr.models.EncDecCTCModel.load_from_checkpoint(checkpoint_path=checkpoint)
 
+    # Make sure the model is on GPU
+    asr_model.cuda()
+
     # Load file paths and original transcriptions
     audio_files = []
     transcriptions = []
@@ -235,7 +238,7 @@ def run_transcription(checkpoint: str = None, json_path: str = None):
             transcriptions.append(line['text'])
 
     # Calculate predictions
-    hypothesis = asr_model.transcribe(paths2audio_files=audio_files, batch_size=16)
+    hypothesis = asr_model.transcribe(paths2audio_files=audio_files, batch_size=2)
 
     # Print predictions VS original transcriptions
     for num, hypo in enumerate(hypothesis):
@@ -247,11 +250,11 @@ def run_transcription(checkpoint: str = None, json_path: str = None):
 
 if __name__ == '__main__':
     # train, choose settings from predifined ones, optionally add checkpoint path
-    model = train_model(config_path_ru, train_manifest_ru, test_manifest_ru, dev_manifest_ru, str(WORK_DIR / 'lightning_logs'
-                                                                        / 'version_98_r2_large_12x1_pretrained2' /
-                                                                        'checkpoints' / 'epoch=62.ckpt'))
+    # model = train_model(config_path_ru, train_manifest_ru, test_manifest_ru, dev_manifest_ru, str(WORK_DIR / 'lightning_logs'
+    #                                                                  / 'version_80_ru_pretrained_med_third' /
+    #                                                                  'checkpoints' / 'epoch=91.ckpt'))
 
-    model.save_to('latest_model_ru_med_15x5.nemo')
+    # model.save_to('latest_model_ru_med_15x5.nemo')
 
     # inference model , str(WORK_DIR / 'lightning_logs' / 'version_55' /
     #                                                                          'checkpoints' / 'epoch=16.ckpt')
@@ -267,5 +270,5 @@ if __name__ == '__main__':
     #                                                                         'checkpoints' / 'epoch=198.ckpt'))
 
     # transcribe
-    # run_transcription(checkpoint=str(WORK_DIR / 'lightning_logs' / 'version_81' /
-    #                                        'checkpoints' / 'epoch=8.ckpt'), json_path=dev_manifest_ru)
+    run_transcription(checkpoint=str(WORK_DIR / 'lightning_logs' / 'version_90_ru_r2_pretr2' /
+                                            'checkpoints' / 'epoch=29.ckpt'), json_path=train_manifest_ru)

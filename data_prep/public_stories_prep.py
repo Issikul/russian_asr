@@ -24,6 +24,9 @@ def mainfest_from_public_stories(data_dir: str, f_type: str):
 
                                 duration = librosa.core.get_duration(filename=path_to_wav)
 
+                                if duration < 8.8 or duration > 9.3:
+                                    continue
+
                                 transcript = line
                                 transcript = transcript.replace('\n', '')
 
@@ -79,7 +82,7 @@ if __name__ == '__main__':
     # opus_to_wav_recursively(str(WORK_DIR / 'datasets' / 'radio_2'))
 
     # create manifest
-    mainfest_from_public_stories(str(WORK_DIR / 'datasets' / 'radio_2'), 'train_manifest')
+    mainfest_from_public_stories(str(WORK_DIR / 'datasets' / 'radio_2'), 'test_manifest')
 
     # fuse given manifests
     # manifests_to_fuse = [str(WORK_DIR / 'datasets' / 'public_youtube700_val' / 'dev_manifest.json'),

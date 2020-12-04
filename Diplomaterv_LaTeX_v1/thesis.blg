@@ -25,12 +25,6 @@ Reallocating 'name_of_file' (item size: 1) to 25 items.
 A level-1 auxiliary file: content/megvalositas.aux
 Reallocating 'name_of_file' (item size: 1) to 26 items.
 A level-1 auxiliary file: content/osszefoglalas.aux
-Reallocating 'name_of_file' (item size: 1) to 24 items.
-A level-1 auxiliary file: content/latex-tools.aux
-Reallocating 'name_of_file' (item size: 1) to 26 items.
-A level-1 auxiliary file: content/thesis-format.aux
-Reallocating 'name_of_file' (item size: 1) to 27 items.
-A level-1 auxiliary file: content/template-usage.aux
 Reallocating 'name_of_file' (item size: 1) to 28 items.
 A level-1 auxiliary file: content/acknowledgement.aux
 Reallocating 'name_of_file' (item size: 1) to 10 items.
@@ -44,56 +38,54 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 Reallocating 'wiz_functions' (item size: 4) to 6000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: bib/mybib.bib
-Warning--entry type for "quartznet" isn't style-file defined
---line 111 of file bib/mybib.bib
-Warning--entry type for "KissPhD" isn't style-file defined
---line 160 of file bib/mybib.bib
-Warning--entry type for "Jeney" isn't style-file defined
---line 199 of file bib/mybib.bib
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-Warning--empty journal in Candy86
-You've used 19 entries,
+Warning--empty journal in las
+Warning--empty journal in w2l
+Warning--empty journal in attention
+Warning--empty journal in timedepth
+Warning--empty journal in quartznet
+You've used 17 entries,
             4991 wiz_defined-function locations,
-            1235 strings with 14683 characters,
-and the built_in function-call counts, 43535 in all, are:
-= -- 8216
-> -- 200
-< -- 5
-+ -- 3152
-- -- 149
-* -- 546
-:= -- 1535
-add.period$ -- 49
-call.type$ -- 19
-change.case$ -- 76
+            1197 strings with 14150 characters,
+and the built_in function-call counts, 41705 in all, are:
+= -- 7828
+> -- 247
+< -- 1
++ -- 2996
+- -- 174
+* -- 551
+:= -- 1497
+add.period$ -- 41
+call.type$ -- 17
+change.case$ -- 82
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 6821
-empty$ -- 884
-format.name$ -- 51
-if$ -- 9238
+cite$ -- 22
+duplicate$ -- 6479
+empty$ -- 770
+format.name$ -- 65
+if$ -- 8762
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 8
-newline$ -- 196
-num.names$ -- 40
-pop$ -- 1560
+int.to.str$ -- 17
+missing$ -- 6
+newline$ -- 182
+num.names$ -- 34
+pop$ -- 1582
 preamble$ -- 1
-purify$ -- 60
+purify$ -- 66
 quote$ -- 22
-skip$ -- 355
+skip$ -- 335
 stack$ -- 0
-substring$ -- 4916
-swap$ -- 4792
-text.length$ -- 5
+substring$ -- 4702
+swap$ -- 4667
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 95
-warning$ -- 1
-while$ -- 200
-width$ -- 21
-write$ -- 283
-(There were 4 warnings)
+type$ -- 85
+warning$ -- 5
+while$ -- 201
+width$ -- 19
+write$ -- 248
+(There were 5 warnings)
