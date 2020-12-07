@@ -18,7 +18,6 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Neurális hálók}{10}{subsection.3.2.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.3}CTC dekódolás és loss számítás}{14}{subsection.3.2.3}%
 \select@language {magyar} \contentsline {section}{\numberline {3.3}Létező megoldások}{16}{section.3.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.4}Következtetések}{17}{section.3.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Tervezés}{18}{chapter.4}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Tervezés, döntési lehetőségek értékelése}{18}{section.4.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Fejlesztési nyelv}{18}{subsection.4.1.1}%
@@ -34,23 +33,21 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.3}LibriSpeech}{24}{subsection.4.3.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.4}Mozilla Common Voice}{24}{subsection.4.3.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.5}További orosz adatbázisok}{25}{subsection.4.3.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Implementáció}{26}{chapter.5}%
-\select@language {magyar} \contentsline {section}{\numberline {5.1}Tanítóadatok előkészítése}{26}{section.5.1}%
-\select@language {magyar} \contentsline {section}{\numberline {5.2}Modellek kimentése és betöltése}{26}{section.5.2}%
-\select@language {magyar} \contentsline {section}{\numberline {5.3}Kalibráció angol nyelv segítségével}{27}{section.5.3}%
-\select@language {magyar} \contentsline {section}{\numberline {5.4}Orosz nyelvű hálók}{29}{section.5.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}NeMo config fájl}{29}{subsection.5.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Szükséges módosítások}{30}{subsection.5.4.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.3}Architektúrák}{30}{subsection.5.4.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.4}Transfer learning}{31}{subsection.5.4.4}%
-\select@language {magyar} \contentsline {chapter}{\numberline {6}Eredmények ismertetése és összefoglalás}{32}{chapter.6}%
-\select@language {magyar} \contentsline {section}{\numberline {6.1}Különböző architektúrák összehasonlítása}{32}{section.6.1}%
-\select@language {magyar} \contentsline {section}{\numberline {6.2}Véletlenszerűen inicializált vs transfer learning}{32}{section.6.2}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Mozilla Common Voice és Radio2}{33}{section.6.3}%
-\select@language {magyar} \contentsline {section}{\numberline {6.4}Javítási lehetőségek}{34}{section.6.4}%
-\select@language {magyar} \contentsline {section}{\numberline {6.5}Végső gondolatok}{35}{section.6.5}%
-\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{36}{chapter*.16}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{37}{chapter*.16}%
-\select@language {magyar} \contentsline {chapter}{Függelék}{39}{appendix*.18}%
-\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio felülete}{39}{section.F.1}%
-\select@language {magyar} \contentsline {section}{\numberline {F.2}Válasz az ,,Élet, a világmindenség, meg minden'' kérdésére}{40}{section.F.2}%
+\select@language {magyar} \contentsline {section}{\numberline {4.4}A tervezés eredményei}{25}{section.4.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Implementáció}{27}{chapter.5}%
+\select@language {magyar} \contentsline {section}{\numberline {5.1}Tanítóadatok előkészítése}{27}{section.5.1}%
+\select@language {magyar} \contentsline {section}{\numberline {5.2}Modellek kimentése és betöltése}{27}{section.5.2}%
+\select@language {magyar} \contentsline {section}{\numberline {5.3}Kalibráció angol nyelv segítségével}{28}{section.5.3}%
+\select@language {magyar} \contentsline {section}{\numberline {5.4}Orosz nyelvű hálók}{30}{section.5.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}NeMo config fájl}{30}{subsection.5.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Szükséges módosítások}{31}{subsection.5.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.3}Architektúrák}{31}{subsection.5.4.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.4}Transfer learning}{32}{subsection.5.4.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}Összefoglalás}{33}{chapter.6}%
+\select@language {magyar} \contentsline {section}{\numberline {6.1}Különböző architektúrák összehasonlítása}{33}{section.6.1}%
+\select@language {magyar} \contentsline {section}{\numberline {6.2}Véletlenszerűen inicializált vs transfer learning}{34}{section.6.2}%
+\select@language {magyar} \contentsline {section}{\numberline {6.3}Mozilla Common Voice és Radio2}{35}{section.6.3}%
+\select@language {magyar} \contentsline {section}{\numberline {6.4}Javítási lehetőségek}{35}{section.6.4}%
+\select@language {magyar} \contentsline {section}{\numberline {6.5}Végső gondolatok}{36}{section.6.5}%
+\select@language {magyar} \contentsline {chapter}{Köszönetnyilvánítás}{38}{chapter*.18}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{39}{chapter*.18}%

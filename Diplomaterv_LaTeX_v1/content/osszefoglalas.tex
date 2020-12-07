@@ -5,7 +5,7 @@
 \begin{table}[ht]
 	\footnotesize
 	\centering
-	\begin{tabular}{ p{2cm} p{2cm} p{1.5cm} p{2cm} p{1.5cm} p{1.5cm} p{1.5cm} }
+	\begin{tabular}{ p{2cm} p{2.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} }
 		\toprule
 		\textbf{Architektúra} & \textbf{Adathalmaz} & \textbf {Transfer Learning (I/N)} & \textbf{Tanítás hossza órában} & \textbf{Epoch szám} & \textbf{Training WER (\%)} & \textbf{Validation WER (\%)} \\
 		\midrule
@@ -15,7 +15,7 @@
 		\hline
 		12x1 & orosz\_közepes & N & 18.5 & 200 & 7.26 & 42.56 \\
 		\hline
-		12x1 & orosz\_közepes & N & 9 & 100 & 15.33 & 50.73 \\
+		12x1 & orosz\_közepes & N & 9 & 100 & 19.42 & 50.73 \\
 		\hline
 		12x1 & orosz\_közepes & I & 8 & 100 & 14.53 & 56.3 \\
 		\hline
@@ -40,19 +40,21 @@ A nagyobb modellek pontosabb eredményeket és alacsonyabb WER-t értek el adatb
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=100mm, keepaspectratio]{figures/architecture_12x1_vs_15x5.png}
-\caption{15x5-ös - narancs és 12x1-es - kék architektúrák.}
+\caption{15x5-ös - kék és 12x1-es - narancs architektúrák. Merőleges tengelyen a lépések, batchek száma, függőleges tengelyen a WER értéke.}
 \end{figure}
 
 A 6.1-es ábrán látható viszont a mélyebb, összetettebb háló előnye, hiszen ekvseebb epoch alatt pontosabb eredményeket, alacsonyabb validation WER értéket sikerült elérni vele, mint a 12x1 architektúrával.
 
 \section{Véletlenszerűen inicializált vs transfer learning}
 
-Minden esetben megállapítható, hogy a transfer learning nagyban javította az elért eredményeket, annak ellenére, hogy az átvett modell súlyai egy másik ábécével, másik nyelven lettek tanítva.  Látható, hogy az emberek által generált hangok, a nyelvek struktúrája és logikája erősen összefügg.
+Szinte minden esetben megállapítható, hogy a transfer learning nagyban javította az elért eredményeket, annak ellenére, hogy az átvett modell súlyai egy másik ábécével, másik nyelven lettek tanítva.  Látható, hogy az emberek által generált hangok, a nyelvek struktúrája és logikája erősen összefügg.
+
+Kivételt képez az orosz közepes adathalmazon, 12x1-es architektúrával tanított modellek. Erre magyarázat lehet, hogy a kezdeti loss görbéket figyelve a Transfer Learning-et alkalmazó változat kezdetben nem csökkent, 6 epochig. Feltehetőleg ezt egy újabb tanítás indítása megoldhatná, ahol a dekóder megfelelőbb véletlenszerű súlyokat kap inicializálásnál. A training WER-en viszont tettenérhető a javuló csökkenő tendencia.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=100mm, keepaspectratio]{figures/12x1_pretrained_vs_random.png}
-\caption{12x1-es architektúrák validation WER étékei pretrained - vörös és random inicializált - narancs színű súlyokkal.}
+\caption{12x1-es architektúrák validation WER étékei pretrained - vörös és random inicializált - narancs színű súlyokkal. Merőleges tengelyen a lépések, batchek száma, függőleges tengelyen a WER értéke.}
 \end{figure}
 
 \section{Mozilla Common Voice és Radio2}
