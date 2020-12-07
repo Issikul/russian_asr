@@ -29,7 +29,7 @@ Az előfeldolgozott jelet időegységekre bontjuk, melyek már a neurális hál�
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=150mm, keepaspectratio]{figures/spectogram.png}
-\caption{Spectogram.}
+\caption{Spektogram.}
 \end{figure}
 
 \subsection{Neurális hálók}
@@ -40,7 +40,7 @@ A neurális háló közbülső, rejtettnek, nevezett része tetszőleges mérete
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=12mm, keepaspectratio]{figures/ReLU.png}
+\includegraphics[width=120mm, keepaspectratio]{figures/ReLU.png}
 \caption{A ReLU aktivációs függvény.}
 \end{figure}
 
@@ -144,11 +144,3 @@ A modellekben elterjedt a konvolúciós- (CNN) és rekurrens neurális rétegek 
 	\end{tabular}
 	\caption{Az egyes SOTA beszédfelismerő modellek és paramétereik.}
 \end{table}
-
-\section{Következtetések}
-
-Megoldásomban az Nvidia QuartzNet alapján indultam el, annak alacsony paraméterszámát figyelembe véve. Egy Pytorch alapú toolkit-et, az Nvidia NeMo-t (Neural Modules) használva kísérleteztem QuartzNet kombinációkkal.
-
-Főként az ingyenesen hozzáférhető Mozilla Common Voice adatbázist használva tanítottam orosz nyelvre a legsikeresebbnek ítélt, 15x5 architektúrájú modellt. A modellt nem véletlenszerűen beállított súlyokkal, hanem transfer learning-et alkalmazva, egy előre tanított angol modellbeli súlyokkal inicializáltam.
-
-Az eredmény finomítása végett próbálkoztam több tanítóadat beiktatásával, mellyel a validációs adathalmaz WER értéke csökkent, így javult. Sajnos a több tanítóadat lényeges megnövelte a tanítás idejét így erőforrások szűkében csökkentette a kísérletezésre jutó időt, ezért ezt a módszert csak kis mértékben alkalmaztam.

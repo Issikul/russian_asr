@@ -18,7 +18,7 @@ A mentésre a későbbi felhasználás mellett azért is van szükség, mert a h
 
 \section{Kalibráció angol nyelv segítségével}
 
-Első lépésként egy kisebb adatbázison, az AN4-en teszteltem a NeMo keretrendszert, a Google Colab segítségével. Az alap paraméterekkel és konfigurációval az elért eredmények elmaradtak a referencia eredményekéhez képest. Az AN4-es tanítás során QuartzNet 5x1-es architektúrájával dolgoztam a kis mennyiségű adat és gyorsabb tanítás végett.
+Első lépésként egy kisebb adatbázison, az an4-en teszteltem a NeMo keretrendszert, a Google Colab segítségével. Az alap paraméterekkel és konfigurációval az elért eredmények elmaradtak a referencia eredményekéhez képest. Az an4-es tanítás során QuartzNet 5x1-es architektúrájával dolgoztam a kis mennyiségű adat és gyorsabb tanítás végett.
 
 A pontosság növelése érdekében az egy gyakran használt módszer az epoch szám növelése. Egy epoch reprezentálja az összes tanítóadaton való kiértékelést és a súlyok javítását a hiba tükrében. Magas epoch szám jobb eredményeket produkál, de vigyázni kell, mert túlzott epoch szám esetében megjelenhet az úgy nevezett túltanítás jelenség. Ez annyit tesz, hogy a túlzottan is megtanulja a modell a tanítóadatokat, azokra nagyon jó eredményt ad, míg általánosan egyre rosszabbul teljesít.
 
@@ -30,7 +30,7 @@ Egy másik fontos paraméter aminek a módosításával növelni lehet az elért
 \caption{Learning Rate fontossága, \url{https://builtin.com/data-science/gradient-descent}.}
 \end{figure}
 
-A fentiek tükrében kis kísérletezés után enyhén növeltem a kezdeti epoch számot és a learning rate-et, rendre 200-ra és 0.02-re. Sikerült egy optimálisabb eredményt elérjek, így a felhasznált paraméterekkel tovább tudtam indulni egy nagyobb adatbázison való tesztelésre.
+A fentiek tükrében kis kísérletezés után enyhén növeltem a kezdeti epoch számot és a learning rate-et, rendre 200-ra és 0.01-re. Sikerült egy optimálisabb eredményt elérjek, így a felhasznált paraméterekkel tovább tudtam indulni egy nagyobb adatbázison való tesztelésre.
 
 \begin{figure}[!ht]
 \centering
@@ -38,7 +38,7 @@ A fentiek tükrében kis kísérletezés után enyhén növeltem a kezdeti epoch
 \caption{AN4 adatbázis validációs adathalmazán elért eredmények.}
 \end{figure}
 
-Arról, hogy a beállításaim tényleg megfelelőek a LibriSpeech 100 órás adathalmazán bizonyosodtam meg. Azért nem ezzel kezdtem a kalibrálást, mert 100 órányi hanganyag tanítása jóval tovább tart, így minél kevesebbszer volt célszerű végigfuttatni a tanítást az optimalizálás gyorsasága érdekében.
+Arról, hogy a beállításaim tényleg megfelelőek a LS100 adathalmazon bizonyosodtam meg. Azért nem ezzel kezdtem a kalibrálást, mert 100 órányi hanganyag tanítása jóval tovább tart, így minél kevesebbszer volt célszerű végigfuttatni a tanítást az optimalizálás gyorsasága érdekében.
 
 A LibriSpeech-hez egy nagyobb méretű architektúrát használtam. A mélyebb hálók jellemzően pontosabb eredményeket képesek elérni a paraméterszám növelése mellett. Összevetettem az eredeti, 5x1-es modellt a nagyobb, 12x1-es QuartzNet modellel és a korábban optimálisnak vélt epoch számmal és egy magasabb learning rate-el. A különbség az 5.2-es ábrán látható. Látható, hogy a nagyobb, mélyebb hálóval pontosabb eredmények voltak elérhetőek.
 
@@ -50,13 +50,13 @@ A LibriSpeech-hez egy nagyobb méretű architektúrát használtam. A mélyebb h
 
 \section{Orosz nyelvű hálók}
 
-Az orosz nyelvű implementációhoz jó kiindulópontot jelentett a LibriSpeech-nél is alkalmazott architektúra. Az Mozilla Common Voice orosz adatbázisa átesett a már említett szükséges formázásokon, és legeneráltam belőle a megfelelő .json fájlokat. A generált fájlokban odafigyeltem, hogy csak cirill betűk szerepeljenek, illetve szükség esetén kisbetűsítettem a szöveget.
+Az orosz nyelvű implementációhoz jó kiindulópontot jelentett a LS100-nál is alkalmazott architektúra. Az Mozilla Common Voice orosz adatbázisa átesett a már említett szükséges formázásokon, és legeneráltam belőle a megfelelő .json fájlokat. A generált fájlokban odafigyeltem, hogy csak cirill betűk szerepeljenek, illetve szükség esetén kisbetűsítettem a szöveget.
 
 \subsection{NeMo config fájl}
 
 A NeMo a modellek leírásához config fájlokat használ. A fájlokban minden modellt és tanítást leíró paramétert meg lehet adni. Ezek közé tartozik a modell architektúrája, a használandó aktivációs rétegek, a learning rate és az epoch szám vagy az optimalizáló típusa.
 
-Előnye, hogy könnyen módosítható és a programkódtól független. Megadhatók üresen hagyott paraméterek is, melyeket `???` el lehet jelölni. Ezeket később programkódból ki lehet tölteni, mint például a használandó manifest fájl elérési útját.
+Előnye, hogy könnyen módosítható és a programkódtól független. Megadhatók üresen hagyott paraméterek is, melyeket ???-el lehet jelölni, vagy egyszerűen nem szükséges őket előre, elég csak futtatáskor a forráskódban definiálni, megadni. Ezeket később programkódból ki lehet tölteni, mint például a használandó manifest fájl elérési útját.
 
 Több config fájlt is használtam, hogy azokat egyszerűen cserélgetve tudjak az előre definiált architektúrák közt váltani.
 
@@ -70,9 +70,9 @@ A másik átállítandó paraméter a config fájl AudioToTextDataLayer részéb
 
 A kísérletezéshez 2 különböző architektúrát, a már említett QuartzNet12x1-t és 15x5-et használtam. A választáson fő szempontja az volt, hogy ilyen architektúrákhoz rendelkeztem előre tanított angol nyelvű modellekkel. Ezeket később a transfer learning-nél használtam fel, és összehasonlítottam a véletlenszerűen inicializált súlyú modellek eredményeivel.
 
-A tanításokat a Mozilla és Radio2 adatbázisán is futtattam. A Radio2-es adatbázis túl nagynak bizonyult, a hanganyagok méretét a config-ban 8.7 másodpercben maximalizáltam, szemben a megszokott 16.7 másodperccel, így az összes tanítóadat 193.75 órát tett ki.
+A tanításokat a Mozilla és Radio2 adatbázisán is futtattam. A kezdeti orosz\_hosszú adathalmaz túl nagynak bizonyult, a hanganyagok méretét a config-ban 8.7 másodpercben maximalizáltam, szemben a megszokott 16.7 másodperccel, így az összes tanítóadat 193.75 órát tett ki.
 
-Fontos kiemelni, hogy a tanítás közbeni pontosság teszteléséhez, azaz a validációhoz mindegyik esetben a Mozilla adatbázishoz tartozó tesztadatokat használtam. A pontosságot külön-külön megvizsgáltam a Radio2-es adatbázisból leválasztott, tanításhoz fel nem használt hanganyagokon is.
+Fontos kiemelni, hogy a tanítás közbeni pontosság teszteléséhez, azaz a validációhoz mindegyik esetben a Mozilla adatbázishoz tartozó tesztadatokat használtam. A pontosságot külön megvizsgáltam a Radio2-es adatbázisból leválasztott, tanításhoz fel nem használt, tehát 8.7 másodpercnél hosszabb, hanganyagokon is.
 
 \subsection{Transfer learning}
 

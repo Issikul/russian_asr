@@ -1,6 +1,37 @@
 %----------------------------------------------------------------------------
-\chapter{Eredmények ismertetése és összefoglalás}
+\chapter{Összefoglalás}
 %----------------------------------------------------------------------------
+
+\begin{table}[ht]
+	\footnotesize
+	\centering
+	\begin{tabular}{ p{2cm} p{2cm} p{2cm} p{2cm} p{1.5cm} p{2cm} p{2cm} }
+		\toprule
+		\textbf{Architektúra} & \textbf{Adathalmaz} & \textbf {Transfer Learning (I/N)} & \textbf{Tanítás hossza órában} & \textbf{Epoch szám} & \textbf{Training WER (\%)} & \textbf{Validation WER (\%)} \\
+		\midrule
+		12x1 & orosz\_rövid & N & 8 & 200 & 10.5 & 58.4 \\
+		\hline
+		15x5 & orosz\_rövid & I & 11.5 & 100 & 8.84 & 41.95 \\
+		\hline
+		12x1 & orosz\_közepes & N & 18.5 & 200 & 7.26 & 42.56 \\
+		\hline
+		12x1 & orosz\_közepes & N & 9 & 100 & 15.33 & 50.73 \\
+		\hline
+		12x1 & orosz\_közepes & I & 8 & 100 & 14.53 & 56.3 \\
+		\hline
+		15x5 & orosz\_közepes & N & 35 & 100 & 10.79 & 45.6 \\
+		\hline
+		15x5 & orosz\_közepes & I & 36.5 & 100 & 5.63 & 30.89 \\
+		\hline
+		12x1 & orosz\_hosszú & I & 27 & 63 & 41.93 & 67.42 \\
+		\hline
+		15x5 & orosz\_hosszú & I & 45 & 33 & 31.91 & 59.25 \\
+		\bottomrule
+	\end{tabular}
+	\caption{A kipróbált modellek, azok architektúrája és az általuk elért eredmények.}
+\end{table}
+
+Az összes modellnél a későbbi összehasonlíthatóság végett 0.01-es learning rate-et használtam 0.001-es weight decay-el, CosineAnnealing ütemezővel, melynek 100 bemelegítő lépés volt megadva.
 
 \section{Különböző architektúrák összehasonlítása}
 
@@ -21,18 +52,20 @@ Minden esetben megállapítható, hogy a transfer learning nagyban javította az
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=100mm, keepaspectratio]{figures/12x1_pretrained_vs_random.png}
-\caption{12x1-es architektúrák validation WER étékei pretrained - vörös és random inicializált - narancs súlyokkal.}
+\caption{12x1-es architektúrák validation WER étékei pretrained - vörös és random inicializált - narancs színű súlyokkal.}
 \end{figure}
 
 \section{Mozilla Common Voice és Radio2}
 
 A két adatbázis fő különbsége az adatok mennyisége volt. A Radio2-ből nagyjából 200 órányi adatot használtam fel, míg a Mozilla Common Voice-ból 45 órányit. Emiatt a Radio2-vel hosszabb tanításokra, de jobb általános eredményekre lehetett számítani.
 
-Ennek megfigyelésére a két különböző adatbázison tanított modellek teljesítményét kell megvizsgálni. A Mozilla Common Voice adathalmazon tanított modell ~29\%-al jobb WER eredményt ért el a Radio2 adathalmazon tanított modellnél a Mozilla Common Voice-hoz tartozó teszt adathalamzon. Viszont a Radio2-ből leválasztott teszt adathalmazon lényegsebb, ~37\% körüli érték volt az eltérés a Radio2 adathalmazon tanult adatok javára. Látható, hogy a nagyobb adatmennyiség egy általánosabban jobban teljesítő modellt eredményezett.
+Ennek megfigyelésére a két különböző adatbázison tanított modellek teljesítményét kell megvizsgálni. A orosz\_közepes tanított modell ~29\%-al jobb WER eredményt ért el az orosz\_hosszú adathalmazon tanított modellnél az orosz\_közepes-hoz tartozó teszt adathalamzon. Viszont az orosz\_hosszú-ból leválasztott teszt adathalmazon lényegesebb, ~37\% körüli érték volt az eltérés az orosz\_hosszú adathalmazon tanult adatok javára. Látható, hogy a nagyobb adatmennyiség egy általánosabban jobban teljesítő modellt eredményezett.
 
 \section{Javítási lehetőségek}
 
 A jobb WER eredmények végett alkalmazhatóak a neurális hálók esetén a gyakran használt augmentációs módszerek. Ezek az elérhető hanganyag mennyiséget dúsítják fel különböző módszerekkel. Ez lehet az eredeti hanganyag torzítása, levágása, zaj hozzáadása vagy sebességének módosítása.
+
+Fontos különbség a megszokott neurális háló alapú beszédfelismerő rendszerekhez képest, hogy nem használtam az implementációmban nyelvmodellt, illetve a legegyszerűbb, greedy, dekódolási eljárással dekódoltam a kimeneti mátrixomat, ami szuboptimális eredményeket nyújt, hiszen ennél összetettebb módszerek szinte kizárólag jobb eredményekhez vezetnek\cite{decoder}. Ettől eltérő dekóder használata javíthat az eredményeken.
 
 Nagyobb adatbázisok alkalmazása jobb általánosítást eredményez, ami a validációs WER érték csökkenésével jár együtt. Érdemes a különböző adatbázisokat összefogni és akár több ezer órányi adaton tanítani.
 
@@ -44,7 +77,7 @@ Természetesen javulást eredményezhet a hiperparaméterekkel való kísérlete
 
 \section{Végső gondolatok}
 
-A beszédfelismerés már régóta velünk van, de egyre inkább elterjed és bekerül a köztudatba, mindennapjainkba a pontosság növekedésének következtében. Ehhez nagyban hozzájárul a klasszikus HM-től eltérő, napjainkban egyre inkább felkapott megközelítés a mély neuron háló alapú, end-to-end beszédfelismerés. Egyre több toolkit, és platform jelenik meg, amelyek könnyítik a neurális hálókkal való munkát, azok fejlesztését.
+A beszédfelismerés már régóta velünk van, de egyre inkább elterjed és bekerül a köztudatba, mindennapjainkba a pontosság növekedésének következtében. Ehhez nagyban hozzájárul a klasszikus HMM-től eltérő, napjainkban egyre inkább felkapott megközelítés a mély neuron háló alapú, end-to-end beszédfelismerés. Egyre több toolkit, és platform jelenik meg, amelyek könnyítik a neurális hálókkal való munkát, azok fejlesztését.
 
 Az angoltól eltérő nyelvű automatikus beszédfelismerő rendszerek fejlesztése és kutatása fontos terület, hiszen a különböző nemzetek polgárai a saját nyelvükön akarnak beszélni. Segítséget nyújthatnak ebben a folyamatban a precíz, angol nyelvű modellek a transfer learning által, aminek következtében drasztikus javulás érhető el az új modell WER pontosságánál.
 
