@@ -2,72 +2,7 @@
 \chapter{Összefoglalás}
 %----------------------------------------------------------------------------
 
-\begin{table}[ht]
-	\footnotesize
-	\centering
-	\begin{tabular}{ p{2.5cm} p{2.5cm} p{1.5cm} p{1.5cm} p{1cm} p{1.5cm} p{1.5cm} }
-		\toprule
-		\textbf{Architektúra (QuartzNet)} & \textbf{Adathalmaz} & \textbf {Transfer Learning (I/N)} & \textbf{Tanítás hossza órában} & \textbf{Epoch szám} & \textbf{Training WER (\%)} & \textbf{Validation WER (\%)} \\
-		\midrule
-		5x1 & an4 & N & 0.25 & 200 & - & 15.65 \\
-		\hline
-		5x1 & LS100 & N & 9 & 100 & 31.23 & 40.04 \\
-		\hline
-		12x1 & LS100 & N & 14.25 & 100 & 19.92 & 25.65 \\
-		\hline
-		12x1 & orosz\_rövid & N & 8 & 200 & 10.5 & 58.4 \\
-		\hline
-		15x5 & orosz\_rövid & I & 11.5 & 100 & 8.84 & 41.95 \\
-		\hline
-		12x1 & orosz\_közepes & N & 18.5 & 200 & 7.26 & 42.56 \\
-		\hline
-		12x1 & orosz\_közepes & N & 8 & 100 & 14.53 & 56.3 \\
-		\hline
-		12x1 & orosz\_közepes & I & 9 & 100 & 19.42 & 52.01 \\
-		\hline
-		15x5 & orosz\_közepes & N & 35 & 100 & 10.79 & 45.6 \\
-		\hline
-		15x5 & orosz\_közepes & I & 36.5 & 100 & 5.63 & 30.89 \\
-		\hline
-		12x1 & orosz\_hosszú & I & 27 & 63 & 41.93 & 67.42 \\
-		\hline
-		15x5 & orosz\_hosszú & I & 45 & 33 & 31.91 & 59.25 \\
-		\bottomrule
-	\end{tabular}
-	\caption{A kipróbált modellek, azok architektúrája és az általuk elért WER eredmények.}
-\end{table}
-
-Az összes modellnél a későbbi összehasonlíthatóság végett 0.01-es learning rate-et használtam 0.001-es weight decay-el, CosineAnnealing ütemezővel, melynek 100 bemelegítő lépés volt megadva.
-
-\section{Különböző architektúrák összehasonlítása}
-
-A nagyobb modellek pontosabb eredményeket és alacsonyabb WER-t értek el adatbázistól függetlenül. Viszont ez az idő drasztikus növekedésével járt együtt. A 12x1-es architektúra nagyjából 5 millió paramétert, míg a 15x5-ös architektúra 18.9 millió paramétert használt. Futtatási idő esetén ez azt eredményezte, hogy fele annyi epoch-hoz másfélszer annyi időre volt szüksége, ami 3-szoros sebesség csökkenést eredményez. Következtetésképp lehetőség szerint érdemes minél több erőforrással dolgozni, az idő csökkentése végett és a mélyebb háló útján elindulni a precízebb végeredmény céljából.
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=100mm, keepaspectratio]{figures/architecture_12x1_vs_15x5.png}
-\caption{15x5-ös - kék és 12x1-es - narancs architektúrák. Merőleges tengelyen a lépések, batchek száma, függőleges tengelyen a WER értéke.}
-\end{figure}
-
-A 6.1-es ábrán látható viszont a mélyebb, összetettebb háló előnye, hiszen ekvseebb epoch alatt pontosabb eredményeket, alacsonyabb validation WER értéket sikerült elérni vele, mint a 12x1 architektúrával.
-
-\section{Véletlenszerűen inicializált vs transfer learning}
-
-Minden esetben megállapítható, hogy a transfer learning nagyban javította az elért eredményeket, annak ellenére, hogy az átvett modell súlyai egy másik ábécével, másik nyelven lettek tanítva.  Látható, hogy az emberek által generált hangok, a nyelvek struktúrája és logikája erősen összefügg.
-
-Látható, hogy a transfer learning-et a beszédfelismerés területén lehetőség szerint érdemes használni, hiszen lényegesen javíthatók vele a felismerési eredmények. Hátránya, hogy rendelkezni kell az előre tanított súlyokkal a megfelelő architektúrákhoz.
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=100mm, keepaspectratio]{figures/12x1_pretrained_vs_random.png}
-\caption{12x1-es architektúrák validation WER étékei pretrained - vörös és random inicializált - narancs színű súlyokkal. Merőleges tengelyen a lépések, batchek száma, függőleges tengelyen a WER értéke.}
-\end{figure}
-
-\section{Mozilla Common Voice és Radio2}
-
-A két adatbázis fő különbsége az adatok mennyisége volt. A Radio2-ből nagyjából 200 órányi adatot használtam fel (orosz\_hosszú), míg a Mozilla Common Voice-ból 45 órányit (orosz\_közepes). Emiatt a Radio2-vel hosszabb tanításokra, de jobb általános eredményekre lehetett számítani.
-
-Ennek megfigyelésére a két különböző adatbázison tanított modellek teljesítményét kell megvizsgálni. A orosz\_közepes tanított modell \~29\%-al jobb WER eredményt ért el az orosz\_hosszú adathalmazon tanított modellnél az orosz\_közepes-hoz tartozó teszt adathalamzon. Viszont az orosz\_hosszú-ból leválasztott teszt adathalmazon lényegesebb, \~37\% körüli érték volt az eltérés az orosz\_hosszú adathalmazon tanult adatok javára. Látható, hogy a nagyobb adatmennyiség egy általánosabban jobban teljesítő modellt eredményezett.
+Egy működő orosz nyelvű beszédfelismerő rendszer elkészítése volt a cél. Ehhez az Nvidia QuartzNet architektúráját és NeMo toolkit-jét alkalmaztam. Kerestem megfelelő ingyenesen hozzáférhető adatbázisokat, melyekkel értékelhető eredmények voltak elérhetők. A pontosság nagy léptékű javítása volt lehetséges orosztól eltérő nyelvű, előre tanított modellek és a transfer learning segítségével.
 
 \section{Javítási lehetőségek}
 
