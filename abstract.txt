@@ -1,0 +1,5 @@
+Napjainkban egyre inkább térhódító technológia az automatikus beszédfelismerés (ASR) területén a neruális hálók alkkalmazása. Az új típusú hálók kutatásával és keretrendszerek fejlesztésével egyre könnybben és gyorsabban lehet elérni jobb eredményeket, pontosabb felismeréseket.
+
+A legtöbb implementáció a nagyméretű tanító adathalmazzal rendelkező angol nyelv felismerésére lett megvalósítva. Munkám során egy másik fontos, de kevésbé kutatott és kisebb tanító adattal rendelkező nyelvre, az oroszra koncentrálok.
+
+A megvalósítás során az alacsony paraméterszámú, ezáltal kevésbé erőforrásigényes QuartzNet arhitektúrával dolgozom, az Nvidia NeMo toolkit-jét felhasználva. Külön megvizsgálom a transfer learning nyújtotta lehetőségeket, mellyel sikerült javítsam az elért eredmények pontosságát-
